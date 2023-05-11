@@ -6,10 +6,41 @@
     left: 50%;  
     margin: 0 auto;
     transform: translateY(-50%) translateX(-50%);
-    background-color: #004C4C;
-    padding: 2rem;
     border-radius: 12px;
+
 }
+.container:hover > .card {
+    cursor: pointer;
+    transform: rotateY(180deg);
+  }
+  .card {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+  }
+
+
+.login,
+.signup {
+background-color: #004C4C;
+height: 100%;
+width: 100%;
+border-radius: 2rem;
+box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+position: absolute;
+backface-visibility: hidden;
+padding: 2rem;
+
+}
+
+.signup {
+    transform: rotateY(180deg);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
 body{
     background: url("https://images8.alphacoders.com/110/thumb-1920-1102284.jpg") no-repeat center center;
