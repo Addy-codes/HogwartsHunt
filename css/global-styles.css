@@ -8,6 +8,11 @@ html{
     font-style: normal;
     font-weight: 100;
   }
+
+@font-face {
+font-family: HARRYP;
+src: url(../rsc/fonts/HARRYP__.TTF);
+}
 :root{
     --green1: #012728;
     --green2: #004C4C;
@@ -50,8 +55,8 @@ img{
     object-fit: contain;
 }
 
-h1,h2,h3,h4{
-    font-family: "Montserrat", Sans-serif;
+h2,h3,h4{
+    font-family: HARRYP;
 }
 
 p{
