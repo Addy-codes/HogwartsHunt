@@ -1,9 +1,9 @@
-.container{
+.container {
     position: absolute;
     width: 400px;
     height: 470px;
     top: 50%;
-    left: 50%;  
+    left: 50%;
     margin: 0 auto;
     transform: translateY(-50%) translateX(-50%);
     background-color: #004C4C;
@@ -11,19 +11,21 @@
     border-radius: 12px;
 }
 
-body{
+body {
     background: url("https://images8.alphacoders.com/110/thumb-1920-1102284.jpg") no-repeat center center;
     background-size: cover;
 
     background-position: 0 0;
 }
-.login__back{
+
+.login__back {
     width: 30px;
     position: absolute;
     right: 1.5rem;
     transition: all ease 0.5s;
 }
-.login__avatar{
+
+.login__avatar {
     position: absolute;
     border-radius: 50%;
     top: -10%;
@@ -31,50 +33,55 @@ body{
     transform: translateX(-50%);
     overflow: hidden;
 }
-.login__avatar{
+
+.login__avatar {
     width: 100px;
     height: 100px;
     object-fit: cover;
     margin-bottom: 2rem;
 }
 
-.login__title{
+.login__title {
     padding: 2rem 0;
     margin-top: 2rem;
     display: flex;
     justify-content: center;
     width: 100%;
 }
-.login__title img{
+
+.login__title img {
     height: 70px;
 }
 
-.login__form{
+.login__form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
     width: 100%;
     margin-top: 2rem;
 }
-fieldset{
+
+fieldset {
     border: none;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-fieldset:nth-of-type(3){
+
+fieldset:nth-of-type(3) {
     flex-direction: row;
     justify-content: space-around;
 }
 
-fieldset label{
+fieldset label {
     color: white;
     font-weight: 600;
     font-size: 1.6rem;
     font-family: sans-serif;
     margin-bottom: .2rem;
 }
-fieldset input{
+
+fieldset input {
     width: 100%;
     border-radius: 12px;
     background-color: #004C4C;
@@ -86,30 +93,35 @@ fieldset input{
     text-align: 1rem;
 }
 
-fieldset input::placeholder{
+fieldset input::placeholder {
     padding: 1rem;
     color: var(--gray1);
     font-size: 1.5rem;
 }
-fieldset input:focus{
+
+fieldset input:focus {
     outline: none;
     border-bottom: 1px solid #daa520;
-    
+
 }
-.fs__button{
+
+.fs__button {
     display: flex;
     justify-content: space-around;
     gap: 2rem;
 }
-.login__button, .g-signin2{
+
+.login__button,
+.g-signin2 {
     flex: 1;
 }
-.g-signin2{
+
+.g-signin2 {
     display: flex;
     justify-content: center;
 }
 
-.login__button{
+.login__button {
     padding: .5rem;
     flex: 1;
     background-color: #daa520;
@@ -117,26 +129,25 @@ fieldset input:focus{
     border-radius: 12px;
     outline: none;
     font-size: 1.6rem;
-    transition: all 0.5s ease;}
+    transition: all 0.5s ease;
+}
 
-.login__button:hover{
+.login__button:hover {
     cursor: pointer;
     background-color: #594d2f;
 }
-.login__back:hover{
+
+.login__back:hover {
     filter: brightness(1.2);
 }
 
-fieldset a{
+fieldset a {
     color: #daa520;
     transition: all 0.5s ease;
     font-size: 1.6rem;
 }
-fieldset a:hover{
+
+fieldset a:hover {
     color: #594d2f;
 
 }
-
-
-
-
