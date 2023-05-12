@@ -12,7 +12,7 @@
     />
     <script src="https://apis.google.com/js/platform.js" async defer></script>
 
-    <title>Login</title>
+    <title>Sign Up</title>
 
     <!-- Link with css -->
     <link rel="stylesheet" href="../css/home.css" />
@@ -24,12 +24,7 @@
     <!-- Container -->
     <div class="container">
       <div class="card">
-        <div class="login">
-          <div class="login__back">
-            <a href="index.html">
-              <img src="../rsc/img/casa.png" alt="Icon Home" />
-            </a>
-          </div>
+        <div class="signup">
           <div class="login__avatar">
             <img
               src="https://www.pngarea.com/pngm/193/1769502_harry-potter-logo-png-hogwarts-crest-circular-doormat.png"
@@ -38,11 +33,22 @@
           </div>
           <div class="login__title">
             <img
-              src="https://fontmeme.com/permalink/230511/e474a23a381f4c57d5b107fefd6a4dc4.png"
+              src="https://fontmeme.com/permalink/230511/e96090e6a0d1c69ccc1a97d67aca3cda.png"
               alt="login  title"
             />
           </div>
-          <form action="#" class="login__form">
+
+          <form action="#" class="signup__form">
+            <fieldset>
+              <label for="email">Email: </label>
+              <input
+                type="text"
+                placeholder="Enter Email"
+                id="email"
+                name="email"
+                required
+              />
+            </fieldset>
             <fieldset>
               <label for="username">Username: </label>
               <input
@@ -54,24 +60,20 @@
               />
             </fieldset>
             <fieldset>
-              <label for="username">Password: </label>
+              <label for="password">Password: </label>
               <input
                 type="password"
                 placeholder="Enter your password"
-                id="username"
-                name="username"
+                id="password"
+                name="password"
                 required
               />
             </fieldset>
             <fieldset class="fs__button">
-              <button class="login__button" type="submit">Log in</button>
-              <div class="g-signin2" data-onsuccess="onSignIn"></div>
+              <button class="login__button" type="submit">Sign Up</button>
             </fieldset>
             <fieldset>
-              <a href="#">Lost your password?</a>
-              <div class="no_account">
-                <a href="signup.html">Don't have an account?</a>
-              </div>
+              <a href="login.html">Already have an account?</a>
             </fieldset>
           </form>
         </div>

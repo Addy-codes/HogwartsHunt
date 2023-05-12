@@ -9,10 +9,7 @@
     border-radius: 12px;
 
 }
-.container:hover > .card {
-    cursor: pointer;
-    transform: rotateY(180deg);
-  }
+
   .card {
     height: 100%;
     width: 100%;
@@ -30,13 +27,13 @@ width: 100%;
 border-radius: 2rem;
 box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
 position: absolute;
-backface-visibility: hidden;
+
 padding: 2rem;
 
 }
 
 .signup {
-    transform: rotateY(180deg);
+
     flex-direction: column;
     justify-content: center;
     align-items: center;
