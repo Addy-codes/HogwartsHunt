@@ -42,7 +42,7 @@
               alt="login  title"
             />
           </div>
-          <form action="#" class="login__form">
+          <form action="{{url_for('login')}}" method="post" class="login__form">
             <fieldset>
               <label for="username">Username: </label>
               <input
@@ -58,15 +58,18 @@
               <input
                 type="password"
                 placeholder="Enter your password"
-                id="username"
-                name="username"
+                id="password"
+                name="password"
                 required
               />
             </fieldset>
+
             <fieldset class="fs__button">
               <button class="login__button" type="submit">Log in</button>
+
               <div class="g-signin2" data-onsuccess="onSignIn"></div>
             </fieldset>
+
             <fieldset>
               <a href="#">Lost your password?</a>
               <div class="no_account">
