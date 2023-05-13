@@ -18,11 +18,18 @@ body{
 input[type=submit] {
     max-width: 15em;  height: 2em;
     background-color: transparent;
-    color: black;
-    font-size: 30px;
-    text-shadow: 5px 4px 5px white;
-    border-style: none;
 
+    font-size: 30px;
+
+    border-style: none;
+    color: white;
+    text-shadow: 5px 4px 5px black;
+
+}
+
+input[type=submit]:hover{
+    color: black;
+    text-shadow: 5px 4px 5px white;
 }
 
 .button-lake{

@@ -31,12 +31,15 @@
     margin: 0;
   }
 .question-box{
+  display: flex;
+  flex-direction: row;
   background-color: blanchedalmond;
 
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
+
 .submit_button{
   margin: 0;
   width: 100%;
