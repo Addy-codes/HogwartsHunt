@@ -70,6 +70,21 @@ def userdetail():
 
 @app.route("/signup",methods=["GET","POST"])
 def signup():
+    msg="getting details"
+    if request.method == "POST":
+        email = request.form["email"]
+        username = request.form["username"]
+        password = request.form["password"]
+
+        cursor.execute(
+            "INSERT INTO user(username, email, password) VALUES (%s,%s,%s)",
+            (username, email, password)
+        )
+
+        record = cursor.fetchone()
+        return render_template("login.html")
+
+        
     return render_template("signup.html")
 
 if __name__ == "__main__":

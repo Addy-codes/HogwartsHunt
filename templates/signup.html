@@ -32,7 +32,7 @@
           <img src="https://fontmeme.com/permalink/230511/e96090e6a0d1c69ccc1a97d67aca3cda.png" alt="login  title" />
         </div>
 
-        <form action="#" class="signup__form">
+        <form action="{{url_for('signup')}}" method="post" class="signup__form">
           <fieldset>
             <label for="email">Email: </label>
             <input type="text" placeholder="Enter Email" id="email" name="email" required />
