@@ -26,7 +26,8 @@
                     <div class="nav2__wrapper">
 
                         <li class="nav2__item"><a href="{{url_for('startpage')}}" class="nav2__item">Home</a></li>
-                        <li class="nav2__item"><a href="{{url_for('userdetail')}}" class="nav2__item">User Details</a></li>
+                        <li class="nav2__item"><a href="{{url_for('userdetail')}}" class="nav2__item">User Details</a>
+                        </li>
                         <li class="nav2__item"><a href="{{url_for('scorecard')}}" class="nav2__item">Scorecard</a></li>
                         <li class="nav2__item"><a href="{{url_for('index')}}" class="nav2__item">Logout</a></li>
                     </div>
@@ -42,7 +43,10 @@
             <h1 class="main_landing">Hogwarts Quest Hunt</h1>
             <h2 class="">Welcome {{request.form.username}}</h2>
             <div class="start_button">
-                <button  onClick="start()"><h2>Start</h2></button>
+                <form method="get" action="game">
+                    <button href="{{url_for('game')}}">Start</button>
+                </form>
+                <!-- <a href="{{url_for('game')}}">Start</a> -->
             </div>
         </div>
     </div>

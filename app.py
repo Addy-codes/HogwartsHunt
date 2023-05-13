@@ -68,9 +68,10 @@ def scorecard():
 def userdetail():
     return render_template("userdetail.html")
 
-@app.route("/signup",methods=["GET","POST"])
+
+@app.route("/signup", methods=["GET", "POST"])
 def signup():
-    msg="getting details"
+    msg = "getting details"
     if request.method == "POST":
         email = request.form["email"]
         username = request.form["username"]
@@ -78,20 +79,21 @@ def signup():
 
         cursor.execute(
             "INSERT INTO user(username, email, password) VALUES (%s,%s,%s)",
-            (username, email, password)
+            (username, email, password),
         )
-
         record = cursor.fetchone()
-        connection.commit()
+        if record:
+            return render_template("login.html")
+        else:
+            return render_template("signup.html")
 
-        return render_template("login.html")
-##        if record:
-##            return render_template("login.html")
-##       else: 
-##           return render_template("signup.html")
-
-        
     return render_template("signup.html")
+
+
+@app.route("/game", methods=["GET", "POST"])
+def game():
+    return render_template("game.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)
