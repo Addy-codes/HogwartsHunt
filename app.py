@@ -59,7 +59,7 @@ def startpage():
     return render_template("startpage.html")
 
 
-@app.route("/about", methods=["GET", "POST"])
+@app.route("/scorecard", methods=["GET", "POST"])
 def scorecard():
     return render_template("scorecard.html")
 
@@ -68,6 +68,9 @@ def scorecard():
 def userdetail():
     return render_template("userdetail.html")
 
+@app.route("/signup",methods=["GET","POST"])
+def signup():
+    return render_template("signup.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

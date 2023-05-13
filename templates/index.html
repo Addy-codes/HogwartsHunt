@@ -8,7 +8,7 @@
     <title>Treasure hunt at Hogwarts</title>
     <link rel="stylesheet" href="../static/css/global-styles.css">
     <link rel="stylesheet" href="../static/css/home.css">
-    <link rel="stylesheet" href="../static/css/carrito.css">
+
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://www.1001fonts.com/parry-hotter-font.html?size=-4">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -40,7 +40,9 @@
         <div class="header__img-title">
             <h1 class="main_landing">Hogwarts Quest Hunt</h1>
             <div class="start_button">
-                <button onClick="start()">Start</button>
+                <form method="get" action="login">
+                    <button href="{{url_for('login')}}">Start</button>
+                </form>
             </div>
         </div>
     </div>

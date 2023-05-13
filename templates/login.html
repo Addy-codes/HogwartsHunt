@@ -25,7 +25,7 @@
     <div class="card">
       <div class="login">
         <div class="login__back">
-          <a href="index.html">
+          <a href="{{url_for('index')}}">
             <img src="../static/rsc/img/casa.png" alt="Icon Home" />
           </a>
         </div>
@@ -48,14 +48,15 @@
 
           <fieldset class="fs__button">
             <button class="login__button" type="submit">Log in</button>
-            <input type="submit" value="Login">
             <div class="g-signin2" data-onsuccess="onSignIn"></div>
           </fieldset>
 
           <fieldset>
             <a href="#">Lost your password?</a>
             <div class="no_account">
-              <a href="signup.html">Don't have an account?</a>
+              <form action="{{url_for('signup')}}" method="get">
+                <a href="{{url_for('signup')}}">Don't have an account?</a>
+              </form>
             </div>
           </fieldset>
         </form>
