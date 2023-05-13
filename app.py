@@ -97,6 +97,17 @@ def game():
 
 @app.route("/cards", methods=["GET", "POST"])
 def cards():
+    if request.method == "POST":
+        if request.form["button"] == "Lake":
+            return render_template(
+                "cards.html",
+                name="https://w0.peakpx.com/wallpaper/751/975/HD-wallpaper-hogwarts-castle-castle-hogwarts.jpg",
+            )
+        if request.form["button"] == "Castle":
+            return render_template(
+                "cards.html",
+                name="https://w0.peakpx.com/wallpaper/290/679/HD-wallpaper-harry-potter-harry-potter-and-the-chamber-of-secrets-hogwarts-castle.jpg",
+            )
     return render_template("cards.html")
 
 

@@ -12,14 +12,15 @@
 <body>
   <main>
     <div class="container">
-      <form action="cards" method="get">
-        <input class="button-lake" href="{{url_for('cards')}}" type="submit" value="Lake" />
-        <input class="button-castle" href="{{url_for('cards')}}" type="submit" value="Castle" />
-        <input class="button-hut" href="{{url_for('cards')}}" type="submit" value="Hagrids Hut" />
-        <input class="button-hogsmeade" href="{{url_for('cards')}}" type="submit" value="Hogsmeade Village" />
-        <input class="button-quidditch" href="{{url_for('cards')}}" type="submit" value="Quidditch" />
-        <!-- <input class="button-room" type="submit" value="Room of Requirement" /> -->
-        <input class="button-dragon" href="{{url_for('cards')}}" type="submit" value="Dragon Challenge" />
+      <form action="cards" method="post">
+        <input class="button-lake" name="button" href="{{url_for('cards')}}" type="submit" value="Lake" />
+        <input class="button-castle" name="button" href="{{url_for('cards')}}" type="submit" value="Castle" />
+        <input class="button-hut" name="button" href="{{url_for('cards')}}" type="submit" value="Hagrids Hut" />
+        <input class="button-hogsmeade" name="button" href="{{url_for('cards')}}" type="submit"
+          value="Hogsmeade Village" />
+        <input class="button-quidditch" name="button" href="{{url_for('cards')}}" type="submit" value="Quidditch" />
+        <!-- <input class="button-room" name="button" type="submit" value="Room of Requirement" /> -->
+        <input class="button-dragon" name="button" href="{{url_for('cards')}}" type="submit" value="Dragon Challenge" />
         <img src="../static/rsc/img/map.jpg" alt="" />
       </form>
     </div>
