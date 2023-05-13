@@ -10,6 +10,10 @@
     background-size:cover;
     background-position: 0 0; 
   }
+  main{
+    display: flex;
+    flex-direction: row;
+  }
   input[type=text]
   {
     width: 100%;
@@ -30,16 +34,36 @@
     padding: 0px;
     margin: 0;
   }
-.question-box{
+
+.row{
   display: flex;
   flex-direction: row;
+}
+.question-box{
+  display: flex;
+  flex-direction:row;
   background-color: blanchedalmond;
-
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
 }
+.question{
+  
+  justify-content: center;
+  margin: 0;
+  padding: 4px;
+}
 
+.back-button{
+  top: 20rem;
+  margin-top: 5.4rem;
+  margin-left: 76.4rem;
+  justify-content: end;
+  background-color: rgb(243, 218, 183);
+  border-style: double;
+  height: 35px;
+  padding: 3px;
+}
 .submit_button{
   margin: 0;
   width: 100%;
