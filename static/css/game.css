@@ -1,0 +1,57 @@
+
+
+.container{
+    color: black;
+    position: relative;
+    border-color: black;
+    border-width: thin;
+
+}
+body{
+    /* background: url("../rsc/img/map.jpg") no-repeat center center;
+    background-size: cover;
+    background-position: 0 0; */
+}
+.container img{
+    width: 100%;
+}
+
+input[type=submit] {
+    max-width: 15em;  height: 2em;
+}
+
+.button-lake{
+    z-index: 1;
+    position: absolute;
+    left: 28%;
+    top: 36%;
+}
+.button-castle{
+    left: 73%;
+    top: 25%;
+    position: absolute;
+}
+.button-hut{
+    position: absolute;
+}
+.button-hogsmeade{
+    position: absolute;
+}
+.button-room{
+    left: 73%;
+    top: 25%;
+    position: absolute;
+}
+.button-quidditch{
+    position: absolute;
+}
+.button-room{
+    
+    position: absolute;
+}
+.button-dragon{
+    left: 70%;
+    top: 67%;
+    position: absolute;
+    color: rgba(red, green, blue, 0.2%);
+}
