@@ -82,6 +82,9 @@ def signup():
         )
 
         record = cursor.fetchone()
+        connection.commit()
+
+        return render_template("login.html")
 ##        if record:
 ##            return render_template("login.html")
 ##       else: 
