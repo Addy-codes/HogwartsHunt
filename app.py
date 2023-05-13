@@ -95,5 +95,10 @@ def game():
     return render_template("game.html")
 
 
+@app.route("/cards", methods=["GET", "POST"])
+def cards():
+    return render_template("cards.html")
+
+
 if __name__ == "__main__":
     app.run(debug=True)
