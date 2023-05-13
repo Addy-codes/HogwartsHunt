@@ -82,7 +82,10 @@ def signup():
         )
 
         record = cursor.fetchone()
-        return render_template("login.html")
+##        if record:
+##            return render_template("login.html")
+##       else: 
+##           return render_template("signup.html")
 
         
     return render_template("signup.html")
