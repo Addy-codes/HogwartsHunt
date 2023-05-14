@@ -30,13 +30,13 @@
         </div>
         <img src={{name}} alt="">
 
-        <form action="game" method="POST">
+        <form action="card" method="POST">
           <fieldset>
             <label for="answer"></label>
             <input type="text" placeholder="Enter your answer" name="answer" id="answer">
           </fieldset>
           <fieldset class="fs__button">
-            <button class="submit_button" type="submit" href="{{url_for('game')}}">Submit answer</button>
+            <button class="submit_button" type="submit">Submit answer</button>
           </fieldset>
         </form>
 
@@ -61,30 +61,30 @@
 
 <script>
 
-function submitAnswer() {
-  const answer = document.getElementById('answer').value;
-  const data = { "answer": answer };
+  function submitAnswer() {
+    const answer = document.getElementById('answer').value;
+    const data = { "answer": answer };
 
-  fetch('/cards', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log(data);
-  })
-  .catch(error => {
-    console.error('There was a problem with the fetch operation:', error);
-  });
-}
+    fetch('/cards', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+      });
+  }
 </script>
 
 </html>

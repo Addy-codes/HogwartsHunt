@@ -108,7 +108,6 @@ def game():
 
 
 @app.route("/cards", methods=["GET", "POST"])
-
 def cards():
     if request.method == "POST":
         answer = request.form["answer"]
