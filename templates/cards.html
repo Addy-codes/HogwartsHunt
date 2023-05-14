@@ -30,14 +30,14 @@
         </div>
         <img src="{{ name }}" alt="">
 
-        <form action="game" method="POST" class="login__form">
+        <form action="{{url_for('cards')}}" method="post" class="login__form">
           <fieldset>
             <label for="answer"></label>
-            <input type="text" placeholder="Enter answer" id="answer" name="answer" required />
+            <input type="text" placeholder="Enter answer" id="answer" name="answer" value="answer" required />
           </fieldset>
 
           <fieldset class="fs__button">
-            <button class="submit_button" type="submit" href="{{url_for('game')}}">Submit</button>
+            <button class="submit_button" type="submit">Submit</button>
           </fieldset>
 
 
