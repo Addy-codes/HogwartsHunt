@@ -1,48 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/game.css" />
+    <title>Begin</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../static/css/game.css" />
-  <title>Begin</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../static/css/game.css" />
+    <title>Begin</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="../static/css/game.css" />
-  <title>Begin</title>
-</head>
-
-<body>
-  <main>
-    <div class="container">
-      <form action="cards" method="post">
-        <div class="clue-box">
-          <h2>Clue: {{ clue }}</h2>
-        </div>
-        <div class="score-box">
-          <div id="timer">00:00:00</div>
-          <div class="level">Level: 1</div>
-        </div>
-        <input class="button-lake" name="button" href="{{url_for('cards')}}" type="submit" value="Lake" />
-        <input class="button-castle" name="button" href="{{url_for('cards')}}" type="submit" value="Castle" />
-        <input class="button-hut" name="button" href="{{url_for('cards')}}" type="submit" value="Hagrids Hut" />
-        <input class="button-hogsmeade" name="button" href="{{url_for('cards')}}" type="submit"
-          value="Hogsmeade Village" />
-        <input class="button-quidditch" name="button" href="{{url_for('cards')}}" type="submit" value="Quidditch" />
-        <input class="button-room" name="button" href="{{url_for('cards')}}" type="submit"
-          value="Room of Requirement" />
-        <input class="button-dragon" name="button" href="{{url_for('cards')}}" type="submit" value="Dragon Challenge" />
-        <img src="../static/rsc/img/map.jpg" alt="" />
-      </form>
-    </div>
-  </main>
-</body>
-<!-- <script>
+  <body>
+    <main>
+      <div class="container">
+        <form action="cards" method="post">
+          <div class="clue-box">
+            <h2>Clue: {{ clue }}</h2>
+          </div>
+          <div class="score-box">
+            <div id="timer">00:00:00</div>
+            <div class="level">Level: 1</div>
+          </div>
+          <input
+            class="button-lake"
+            name="button"
+            href="{{url_for('cards')}}"
+            type="submit"
+            value="Lake"
+          />
+          <input
+            class="button-castle"
+            name="button"
+            href="{{url_for('cards')}}"
+            type="submit"
+            value="Castle"
+          />
+          <input
+            class="button-hut"
+            name="button"
+            href="{{url_for('cards')}}"
+            type="submit"
+            value="Hagrids Hut"
+          />
+          <input
+            class="button-hogsmeade"
+            name="button"
+            href="{{url_for('cards')}}"
+            type="submit"
+            value="Hogsmeade Village"
+          />
+          <input
+            class="button-quidditch"
+            name="button"
+            href="{{url_for('cards')}}"
+            type="submit"
+            value="Quidditch"
+          />
+          <input
+            class="button-room"
+            name="button"
+            href="{{url_for('cards')}}"
+            type="submit"
+            value="Room of Requirement"
+          />
+          <input
+            class="button-dragon"
+            name="button"
+            href="{{url_for('cards')}}"
+            type="submit"
+            value="Dragon Challenge"
+          />
+          <img src="../static/rsc/img/map.jpg" alt="" />
+        </form>
+      </div>
+    </main>
+  </body>
+  <script>
     var seconds = 0;
     var minutes = 0;
     var hours = 0;
@@ -68,6 +107,5 @@
     }
 
     setInterval(timer, 1000);
-  </script> -->
-
+  </script>
 </html>

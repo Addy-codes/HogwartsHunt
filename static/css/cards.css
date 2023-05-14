@@ -9,7 +9,7 @@
     background: url("../rsc/img/map.jpg") no-repeat center center;
     background-size:cover;
     background-position: 0 0; 
-  }
+  }/*
   main{
     display: flex;
     flex-direction: row;
@@ -22,7 +22,7 @@
     background-color: blanchedalmond;
     margin: 0;
   }
-  .container {
+  /* .container {
     display: flex;
     flex-direction: column;
     position:absolute;
@@ -30,9 +30,21 @@
     left:50%;
     transform:translate(-50%,-50%);
     border-color: black;
- 
     padding: 0px;
     margin: 0;
+  } 
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0 auto;
+  }
+  .container img{
+    height: 400px;
+    max-width: 100%;
   }
 
 .row{
@@ -69,6 +81,83 @@
   width: 100%;
   left:50%;
   background-color: blanchedalmond;
+}  
+*/
+
+
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 20%
+
 }
 
+.question-box {
+  margin-top: 45px;
+  padding: 10px;
+  background-color:blanchedalmond;
+  max-width: 500px;
+  text-align: center;
+  width: 100%;
+}
+
+.question {
+  font-size: 18px;
+  font-weight: bold;
+  /* margin-bottom: 10px; */
+}
+
+img {
+  margin-top: 0;
+  width: 100%;
+  max-width: 500px;
+
+}
+
+.login__form {
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+  background-color: blanchedalmond;
+}
+
+.login__form input {
+  padding: 10px;
+  border: none;
+  margin-bottom: 0;
+  width: 500px;
+  max-width: 500px;
+}
+
+.fs__button {
+  margin-top: 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+.submit_button {
+  padding: 10px 20px;
+  background-color: blanchedalmond;
+  color:black; 
+
+  cursor: pointer;
+  font-size: 10px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.back-button {
+  padding: 10px 20px;
+  background-color: blanchedalmond;
+  color: black;
+  cursor: pointer;
+  font-size: 10px;
+  width: 500px;
+}
   
