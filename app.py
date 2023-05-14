@@ -13,11 +13,12 @@ cursor = connection.cursor()
 app = Flask(__name__)
 app.secret_key = "super secret key"
 
+playerid = 0
+
 
 @app.route("/")
 def index():
     # if session['loggedin']==True :
-
     return render_template("index.html")
 
 
@@ -36,6 +37,9 @@ def login():
         )
         # print("1111111")
         record = cursor.fetchone()
+        global playerid
+        playerid = record[0]
+        # print(record)
         # print("222222")
         if record:
             session["loggedin"] = True
@@ -98,6 +102,8 @@ def game():
 @app.route("/cards", methods=["GET", "POST"])
 def cards():
     if request.method == "POST":
+        cursor.execute("SELECT * FROM ans WHERE userid=%s", (playerid,))
+        record = cursor.fetchone()
         if request.form["button"] == "Lake":
             return render_template(
                 "cards.html",
@@ -116,18 +122,27 @@ def cards():
         if request.form["button"] == "Hogsmeade Village":
             return render_template(
                 "cards.html",
-                name="https://static.wikia.nocookie.net/harrypotter/images/7/76/Hogsmeade.png/revision/latest?cb=20161208133044",
+                name="https://static1.srcdn.com/wordpress/wp-content/uploads/2017/04/Harry-Potter-Hogsmeade-at-Christmastime-with-Snow-in-the-air-and-pedestrians.jpg?q=50&fit=crop&w=1500&dpr=1.5",
             )
         if request.form["button"] == "Quidditch":
             return render_template(
                 "cards.html",
                 name="https://i.ytimg.com/vi/uhnvXT9mmyU/maxresdefault.jpg",
             )
+        print(record)
         if request.form["button"] == "Room of Requirement":
-            return render_template(
-                "cards.html",
-                name="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/12/hogwarts-legacy-room-of-requirement-1.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
-            )
+            if "room" in record:
+                print("present")
+                return render_template(
+                    "cards.html",
+                    name="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/12/hogwarts-legacy-room-of-requirement-1.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
+                )
+            else:
+                print("not present")
+                return render_template(
+                    "cards.html",
+                    name="https://www.pcinvasion.com/wp-content/uploads/2023/02/How-to-make-the-Room-of-Requirement-Bigger-Hogwarts-Legacy-Guide-featured-image.jpg",
+                )
         if request.form["button"] == "Dragon Challenge":
             return render_template(
                 "cards.html",
