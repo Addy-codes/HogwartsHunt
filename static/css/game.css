@@ -26,6 +26,15 @@ input[type=submit] {
     text-shadow: 5px 4px 5px black;
 
 }
+.clue-box{
+    position: absolute;
+    justify-content: center;
+    border-style: double;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(109, 36, 36, 0.737);
+    color: white;
+}
 
 input[type=submit]:hover{
     color: black;
