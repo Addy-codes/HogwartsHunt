@@ -104,14 +104,15 @@ def game():
     record = cursor.fetchone()
     clue = record[1]
     # print(clue)
+    # if request.form["button"] == "sub":
+    #     answer = request.form["answer"]
+    #     print(answer)
     return render_template("game.html", clue=clue)
 
 
 @app.route("/cards", methods=["GET", "POST"])
 def cards():
     if request.method == "POST":
-        answer = request.form["answer"]
-        print(answer)
         cursor.execute("SELECT * FROM quesdb WHERE level=%s", (level,))
         record = cursor.fetchone()
         ques = record[2]
