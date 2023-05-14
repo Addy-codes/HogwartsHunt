@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
         integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>scorecard</title>
+    <title>Leaderboard</title>
 </head>
 
 <body>
@@ -29,7 +29,7 @@
                         <div class="nav2__wrapper">
                             <li class="nav2__item"><a href="{{url_for('startpage')}}" class="nav2__item">Home</a></li>   
                             <li class="nav2__item"><a href="{{url_for('userdetail')}}" class="nav2__item">User Details</a></li>
-                            <li class="nav2__item"><a href="{{url_for('scorecard')}}" class="nav2__item">Scorecard</a></li>
+                            <li class="nav2__item"><a href="{{url_for('scorecard')}}" class="nav2__item">Leaderboard</a></li>
                             <li class="nav2__item"><a href="{{url_for('index')}}" class="nav2__item">Logout</a></li>
                         </div>
                     </nav>
@@ -39,18 +39,29 @@
             </div>
         </header>
     <div class="score-table">
-        <table>
-            <tr class="col-header">
-              <td>Cell 1</td>
-              <td>Cell 2</td>
-              <td>Cell 3</td>
-            </tr>
-            <tr>
-              <td>Cell 4</td>
-              <td>Cell 5</td>
-              <td>Cell 6</td>
-            </tr>
-          </table>
+        <h1>Treasure Hunt Leaderboard</h1>
+	<table>
+		<tr>
+			<th>Rank</th>
+			<th>Player Name</th>
+			<th>Score</th>
+		</tr>
+		<tr>
+			<td>1</td>
+			<td>John</td>
+			<td>100</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>Jane</td>
+			<td>90</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>Bob</td>
+			<td>80</td>
+		</tr>
+	</table>
     </div>
 </body>
 
