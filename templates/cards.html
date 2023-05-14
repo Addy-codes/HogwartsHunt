@@ -25,16 +25,18 @@
 
         <div class="question-box">
           <div class="question">
-            Here will be your questions
+            Ques: {{ ques }}
           </div>
         </div>
         <img src={{name}} alt="">
 
-        <form action="" method="POST">
-          <label for="answer"></label>
-          <input type="text" placeholder="Enter your answer" name="answer" id="">
+        <form action="game" method="POST">
+          <fieldset>
+            <label for="answer"></label>
+            <input type="text" placeholder="Enter your answer" name="answer" id="answer">
+          </fieldset>
           <fieldset class="fs__button">
-            <button class="submit_button" type="submit">Submit answer</button>
+            <button class="submit_button" type="submit" href="{{url_for('game')}}">Submit answer</button>
           </fieldset>
         </form>
 

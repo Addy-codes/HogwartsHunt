@@ -42,7 +42,7 @@ def login():
         playerid = record[0]
         global level
         level = record[4]
-        print(level)
+        # print(level)
         # print(record)
         # print("222222")
         if record:
@@ -110,7 +110,9 @@ def game():
 @app.route("/cards", methods=["GET", "POST"])
 def cards():
     if request.method == "POST":
-        cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
+        answer = request.form["answer"]
+        print(answer)
+        cursor.execute("SELECT * FROM quesdb WHERE level=%s", (level,))
         record = cursor.fetchone()
         ques = record[2]
         if request.form["button"] == "Lake":
