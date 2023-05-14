@@ -1,0 +1,42 @@
+font-face {
+    font-family: HARRYP;
+    src: url(../rsc/fonts/HARRYP__.TTF);
+  }
+/* Header Section Styles */
+
+button {
+    background: transparent;
+    color: #fff;
+    border: 0;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+button:hover {
+    border: 0px ;
+
+}
+button:hover {
+    background: #fff;
+    color:#000;
+    transition: all 0.5s ease-in-out;
+}
+.score-table{
+    margin: 40px;
+    padding:10px;
+    color: white;
+    top: 0;
+    justify-content: center;
+    text-align: center;
+    border-style: double;
+}
+.score-table table{
+    justify-content: center;
+    text-align: center;
+}
+.col-header{
+    font-size: 12px;
+}
