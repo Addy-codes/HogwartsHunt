@@ -15,6 +15,7 @@ app.secret_key = "super secret key"
 
 playerid = 0
 level = 1
+clue = ""
 
 
 @app.route("/")
@@ -100,6 +101,7 @@ def signup():
 
 @app.route("/game", methods=["GET", "POST"])
 def game():
+    global clue
     cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
     record = cursor.fetchone()
     clue = record[1]
@@ -112,6 +114,7 @@ def game():
 
 @app.route("/cards", methods=["GET", "POST"])
 def cards():
+    global level, clue
     print("card called")
     # if request.method == "POST":
     # print("inside get")
@@ -119,6 +122,7 @@ def cards():
         cursor.execute("SELECT * FROM quesdb WHERE level=%s", (level,))
         record = cursor.fetchone()
         ques = record[2]
+        cursor.reset()
         if request.form["button"] == "Lake":
             return render_template(
                 "cards.html",
@@ -173,8 +177,14 @@ def cards():
             )
         # print("below")
         answer = request.form.get("answer")
-        print(answer)
-        return render_template("game.html")
+        dbans = cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
+        alert_message = "Correct Answer!"
+        if answer == dbans:
+            level = level + 1
+            cursor.execute("UPDATE user SET level = %s;", (level,))
+            return render_template("game.html", alert_message=alert_message)
+        alert_message = "Wrong Answer!"
+        return render_template("game.html", alert_message=alert_message, clue=clue)
     return render_template("cards.html")
 
 
