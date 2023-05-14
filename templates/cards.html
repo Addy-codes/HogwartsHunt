@@ -28,21 +28,21 @@
             Ques: {{ ques }}
           </div>
         </div>
-        <img src={{name}} alt="">
+        <img src="{{ name }}" alt="">
 
-        <form action="{{url_for('card')}}" method="POST" class="login__form">
+        <form action="game" method="POST" class="login__form">
           <fieldset>
             <label for="answer"></label>
             <input type="text" placeholder="Enter answer" id="answer" name="answer" required />
           </fieldset>
 
           <fieldset class="fs__button">
-            <button class="submit_button" type="submit">Submit</button>
+            <button class="submit_button" type="submit" href="{{url_for('game')}}">Submit</button>
           </fieldset>
 
 
           <div>
-            <form action="back" method="post">
+            <form action="game" method="post">
               <button class="back-button" type="submit"> Back</button>
             </form>
 
