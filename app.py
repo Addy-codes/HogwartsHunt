@@ -179,7 +179,7 @@ def cards():
             )
         # if request.form["button-quit"] == "quit":
         #     return render_template("startpage.html")
-        
+
         answer = request.form.get("answer")
         cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
         dbans = cursor.fetchone()[0]
@@ -202,51 +202,6 @@ def cards():
         )
 
     return render_template("cards.html")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 if __name__ == "__main__":
