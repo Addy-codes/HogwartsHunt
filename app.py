@@ -20,6 +20,7 @@ clue = ""
 email = ""
 username = ""
 password = ""
+prevButton = "default"
 
 
 @app.route("/")
@@ -118,7 +119,10 @@ def signup():
 @app.route("/game", methods=["GET", "POST"])
 def game():
     global clue, level
-    cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
+    if level == 1:
+        cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
+    else:
+        cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
     record = cursor.fetchone()
     clue = record[1]
     # print("Your Clue is")
@@ -139,32 +143,37 @@ def cards():
         record = cursor.fetchone()
         ques = record[2]
         cursor.reset()
-
+        global prevButton
         if request.form["button"] == "Lake":
+            prevButton = "Lake"
             return render_template(
                 "cards.html",
                 name="https://w0.peakpx.com/wallpaper/751/975/HD-wallpaper-hogwarts-castle-castle-hogwarts.jpg",
                 ques=ques,
             )
         if request.form["button"] == "Castle":
+            prevButton = "Castle"
             return render_template(
                 "cards.html",
                 name="https://w0.peakpx.com/wallpaper/290/679/HD-wallpaper-harry-potter-harry-potter-and-the-chamber-of-secrets-hogwarts-castle.jpg",
                 ques=ques,
             )
         if request.form["button"] == "Hagrids Hut":
+            prevButton = "Hagrids Hut"
             return render_template(
                 "cards.html",
                 name="https://images.ctfassets.net/usf1vwtuqyxm/1ERSda92XiUgGWICymMgc6/5f3dff987a43cf997de4b85867bd662f/HagridsHut_WB_F3_BuckbeaksExecutionAtHagridsHut_Illust_100615_Land.jpg?w=914&q=70&fm=webp",
                 ques=ques,
             )
         if request.form["button"] == "Hogsmeade Village":
+            prevButton = "Hogsmeade Village"
             return render_template(
                 "cards.html",
                 name="https://static1.srcdn.com/wordpress/wp-content/uploads/2017/04/Harry-Potter-Hogsmeade-at-Christmastime-with-Snow-in-the-air-and-pedestrians.jpg?q=50&fit=crop&w=1500&dpr=1.5",
                 ques=ques,
             )
         if request.form["button"] == "Quidditch":
+            prevButton = "Quidditch"
             return render_template(
                 "cards.html",
                 name="https://i.ytimg.com/vi/uhnvXT9mmyU/maxresdefault.jpg",
@@ -172,7 +181,10 @@ def cards():
             )
         # print(record)
         if request.form["button"] == "Room of Requirement":
-            if "room" in record:
+            prevButton = "Room of Requirement"
+            # print(prevButton)
+            # print("Inside RR")
+            if "Alohomora" in record:
                 # print("present")
                 return render_template(
                     "cards.html",
@@ -187,6 +199,7 @@ def cards():
                     ques=ques,
                 )
         if request.form["button"] == "Dragon Challenge":
+            prevButton = "Dragon Challenge"
             return render_template(
                 "cards.html",
                 name="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61c67649-6df5-4fd9-8082-6e4021e6dca5/d2qaz3r-44068af1-e256-4f10-8066-64b36b6abe3e.jpg/v1/fill/w_900,h_600,q_75,strp/the_dragon_fight_by_kaelngu_d2qaz3r-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvNjFjNjc2NDktNmRmNS00ZmQ5LTgwODItNmU0MDIxZTZkY2E1XC9kMnFhejNyLTQ0MDY4YWYxLWUyNTYtNGYxMC04MDY2LTY0YjM2YjZhYmUzZS5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ZgEftWIZeYZZOoX8bx5Qu3_wuy6dahj0WCv701GcSPE",
@@ -196,15 +209,23 @@ def cards():
         #     return render_template("startpage.html")
 
         answer = request.form.get("answer")
-        cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
-        dbans = cursor.fetchone()[0]
+        cursor.execute("SELECT * FROM quesdb WHERE level = %s;", (level,))
+        record = cursor.fetchone()
+        dbans = record[4]
+        # print(dbans)
         cursor.reset()
         alert_message = "Correct Answer!"
-        if answer == dbans:
+        # print(prevButton)
+        # print("mid")
+        # print(record[5])
+        if answer == dbans and prevButton == record[5]:
             level += 1
-            cursor.execute("UPDATE user SET level = %s;", (level,))
+            cursor.execute(
+                "UPDATE user SET level = %s WHERE userid=%s;",
+                (level, playerid),
+            )
             connection.commit()
-            cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
+            cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
             record = cursor.fetchone()
             clue = record[1]
             return render_template(
