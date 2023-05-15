@@ -96,7 +96,9 @@ def scorecard():
     time = []
     for i in records:
         td[i] = timedelta_to_seconds(records[i])
-        time[i] = format_time(td[i])
+        temp = format_time(td[i])
+        time.append(temp)
+    print(time)
     cursor.execute("SELECT username FROM user ORDER BY time WHERE level=9;")
     name = cursor.fetchall()
     return render_template("scorecard.html", td=td, name=name)
