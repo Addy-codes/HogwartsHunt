@@ -119,10 +119,10 @@ def signup():
 @app.route("/game", methods=["GET", "POST"])
 def game():
     global clue, level
-    if level == 1:
-        cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
-    else:
-        cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
+    # if level == 1:
+    #     cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
+    # else:
+    cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
     record = cursor.fetchone()
     clue = record[1]
     # print("Your Clue is")
@@ -144,6 +144,27 @@ def cards():
         ques = record[2]
         cursor.reset()
         global prevButton
+        if "backbutton" in request.form:
+            return render_template("game.html", clue=clue, level=level)
+        if "prev-level" in request.form:
+            if level == 1:
+                alert_message = "You are already on the first level"
+                return render_template(
+                    "game.html",
+                    alert_message=alert_message,
+                    clue=clue,
+                    level=level,
+                )
+            level -= 1
+            cursor.execute(
+                "UPDATE user SET level = %s WHERE userid=%s;",
+                (level, playerid),
+            )
+            connection.commit()
+            cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
+            record = cursor.fetchone()
+            clue = record[1]
+            return render_template("game.html", clue=clue, level=level)
         if request.form["button"] == "Lake":
             prevButton = "Lake"
             return render_template(
@@ -200,6 +221,8 @@ def cards():
                 )
         if request.form["button"] == "Dragon Challenge":
             prevButton = "Dragon Challenge"
+            if "12042003" in record:
+                return render_template("endpage.html")
             return render_template(
                 "cards.html",
                 name="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61c67649-6df5-4fd9-8082-6e4021e6dca5/d2qaz3r-44068af1-e256-4f10-8066-64b36b6abe3e.jpg/v1/fill/w_900,h_600,q_75,strp/the_dragon_fight_by_kaelngu_d2qaz3r-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvNjFjNjc2NDktNmRmNS00ZmQ5LTgwODItNmU0MDIxZTZkY2E1XC9kMnFhejNyLTQ0MDY4YWYxLWUyNTYtNGYxMC04MDY2LTY0YjM2YjZhYmUzZS5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ZgEftWIZeYZZOoX8bx5Qu3_wuy6dahj0WCv701GcSPE",
