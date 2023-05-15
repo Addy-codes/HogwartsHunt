@@ -90,15 +90,17 @@ def format_time(seconds):
 
 @app.route("/scorecard", methods=["GET", "POST"])
 def scorecard():
-    cursor.execute("SELECT time FROM user WHERE level=9 ORDER BY time;")
+    cursor.execute("SELECT * FROM user WHERE level=9 ORDER BY time;")
     records = cursor.fetchall()
-    td = []
-    time = []
-    for i in records:
-        td[i] = timedelta_to_seconds(records[i])
-        time[i] = format_time(td[i])
-    cursor.execute("SELECT username FROM user ORDER BY time WHERE level=9;")
-    name = cursor.fetchall()
+    print(records)
+    type(records)
+    # td = []
+    # time = []
+    # for i in records:
+    #     td[i] = timedelta_to_seconds(records[i])
+    #     time[i] = format_time(td[i])
+    # cursor.execute("SELECT username FROM user ORDER BY time WHERE level=9;")
+    # name = cursor.fetchall()
     return render_template("scorecard.html", td=td, name=name)
 
 
@@ -184,6 +186,14 @@ def cards():
             record = cursor.fetchone()
             clue = record[1]
             return render_template("game.html", clue=clue, level=level)
+        if "reset" in request.form:
+            cursor.execute(
+                "UPDATE user SET level = %s, time = %s WHERE userid=%s;",
+                (1, 0, playerid),
+            )
+            connection.commit()
+            level = 1
+            return render_template("login.html")
         if request.form["button"] == "Lake":
             prevButton = "Lake"
             return render_template(
@@ -278,7 +288,20 @@ def cards():
             return render_template(
                 "game.html", alert_message=alert_message, clue=clue, level=level
             )
-
+        if answer == dbans:
+            print("inside deadend")
+            level += 1
+            cursor.execute(
+                "UPDATE user SET level = %s WHERE userid=%s;",
+                (level, playerid),
+            )
+            connection.commit()
+            cursor.execute("SELECT * FROM deadend1 WHERE level=%s", ((1),))
+            record = cursor.fetchone()
+            clue = record[1]
+            return render_template(
+                "game.html", alert_message=alert_message, clue=clue, level=level
+            )
         alert_message = "Wrong Answer!"
         return render_template(
             "game.html", alert_message=alert_message, clue=clue, level=level
