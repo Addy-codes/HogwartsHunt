@@ -92,16 +92,17 @@ def format_time(seconds):
 def scorecard():
     cursor.execute("SELECT * FROM user WHERE level=9 ORDER BY time;")
     records = cursor.fetchall()
-    print(records)
-    type(records)
-    # td = []
-    # time = []
-    # for i in records:
-    #     td[i] = timedelta_to_seconds(records[i])
-    #     time[i] = format_time(td[i])
-    # cursor.execute("SELECT username FROM user ORDER BY time WHERE level=9;")
-    # name = cursor.fetchall()
-    return render_template("scorecard.html", td=td, name=name)
+    td = []
+    name = []
+    for i in range(len(records)):
+        name.append(records[i][1])
+        temp = timedelta_to_seconds(records[i][6])
+        td.append(temp)
+    time = []
+    for i in range(len(td)):
+        temp1 = format_time(td[i])
+        time.append(temp1)
+    return render_template("scorecard.html", time=time, name=name)
 
 
 @app.route("/userdetail", methods=["GET", "POST"])
