@@ -28,7 +28,8 @@
                         <li class="nav2__item"><a href="{{url_for('startpage')}}" class="nav2__item">Home</a></li>
                         <li class="nav2__item"><a href="{{url_for('userdetail')}}" class="nav2__item">User Details</a>
                         </li>
-                        <li class="nav2__item"><a href="{{url_for('scorecard')}}" class="nav2__item">Leaderboard</a></li>
+                        <li class="nav2__item"><a href="{{url_for('scorecard')}}" class="nav2__item">Leaderboard</a>
+                        </li>
                         <li class="nav2__item"><a href="{{url_for('index')}}" class="nav2__item">Logout</a></li>
                     </div>
                 </nav>
@@ -59,16 +60,16 @@
 
 <script>
 
-function setCookie(name, value, days) {
-      let expires = "";
-      if (days) {
-        let date = new Date();
-        date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-        expires = "; expires=" + date.toUTCString();
-      }
-      document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
-setCookie("current_time", "", -1);
+    setCookie("current_time", "{{ time }}", -1);
 </script>
 
 </html>

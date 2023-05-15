@@ -21,7 +21,8 @@
   <main>
     <div class="container">
       <form action="cards" method="post">
-        <input class="button-quit" name="button" href="{{url_for('startpage')}}" type="submit" value="Quit" />
+        <input class="button-quit" href="{{url_for('index')}}" id="quitButton" type="button" value="Save & Quit" />
+        <!-- <input class="button-quit" name="button" href="{{url_for('startpage')}}" type="submit" value="Quit" /> -->
         <div class="clue-box">
           <h2>Clue: {{ clue }}</h2>
         </div>
@@ -120,6 +121,44 @@
     }
     return null;
   }
+
+
+
+  // ...
+
+  // Function to save the timer value in the database and navigate to the start page
+  function saveTimerValueAndQuit() {
+    // Get the timer value from the div element
+    var timerValue = document.getElementById("timer").textContent;
+
+    // Make an AJAX request to the server to save the timer value
+    fetch("/save_timer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "timerValue=" + encodeURIComponent(timerValue),
+    })
+      .then(response => response.json())
+      .then(data => {
+        console.log("Timer value saved:", data);
+        // Navigate to the start page
+        window.location.href = "{{ url_for('startpage') }}";
+      })
+      .catch(error => {
+        console.error("Error saving timer value:", error);
+        // Navigate to the start page even if there was an error
+        window.location.href = "{{ url_for('startpage') }}";
+      });
+  }
+
+  // Attach the event listener to the Quit button
+  document.getElementById("quitButton").addEventListener("click", saveTimerValueAndQuit);
+
+  // ...
+
+
+
 </script>
 
 </html>
