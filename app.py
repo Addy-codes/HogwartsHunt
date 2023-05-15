@@ -44,10 +44,6 @@ def login():
         )
         # print("1111111")
         record = cursor.fetchone()
-        global playerid
-        playerid = record[0]
-        global level
-        level = record[4]
         # print(level)
         # print(record)
         # print("222222")
@@ -55,6 +51,10 @@ def login():
             session["loggedin"] = True
             session["username"] = record[1]
             # print("Found")
+            global playerid
+            playerid = record[0]
+            global level
+            level = record[4]
             return render_template("startpage.html", msg=msg)
         else:
             # print("Not Found")
@@ -80,7 +80,23 @@ def startpage():
 
 @app.route("/scorecard", methods=["GET", "POST"])
 def scorecard():
-    return render_template("scorecard.html")
+    cursor.execute("SELECT time FROM user ORDER BY time WHERE level=9;")
+    records = cursor.fetchall()
+
+    # Convert the SQL-formatted time to hh:mm:ss format
+    formatted_records = []
+    for record in records:
+        time = record[
+            "time"
+        ]  # Assuming 'time' is the column name containing SQL-formatted time
+        formatted_time = format_sql_time(
+            time
+        )  # Convert the SQL time to hh:mm:ss format
+        formatted_record = {**record, "time": formatted_time}
+        formatted_records.append(formatted_record)
+    cursor.execute("SELECT username FROM user ORDER BY time WHERE level=9;")
+    name = cursor.fetchall()
+    return render_template("scorecard.html", records=formatted_records, name=name)
 
 
 @app.route("/userdetail", methods=["GET", "POST"])
