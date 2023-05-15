@@ -177,6 +177,9 @@ def cards():
                 name="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61c67649-6df5-4fd9-8082-6e4021e6dca5/d2qaz3r-44068af1-e256-4f10-8066-64b36b6abe3e.jpg/v1/fill/w_900,h_600,q_75,strp/the_dragon_fight_by_kaelngu_d2qaz3r-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvNjFjNjc2NDktNmRmNS00ZmQ5LTgwODItNmU0MDIxZTZkY2E1XC9kMnFhejNyLTQ0MDY4YWYxLWUyNTYtNGYxMC04MDY2LTY0YjM2YjZhYmUzZS5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ZgEftWIZeYZZOoX8bx5Qu3_wuy6dahj0WCv701GcSPE",
                 ques=ques,
             )
+        # if request.form["button-quit"] == "quit":
+        #     return render_template("startpage.html")
+        
         answer = request.form.get("answer")
         cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
         dbans = cursor.fetchone()[0]
