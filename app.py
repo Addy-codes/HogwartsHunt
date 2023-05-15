@@ -17,6 +17,9 @@ app.secret_key = "super secret key"
 playerid = 0
 level = 1
 clue = ""
+email = ""
+username = ""
+password = ""
 
 
 @app.route("/")
@@ -66,7 +69,12 @@ def about():
 
 @app.route("/startpage", methods=["GET", "POST"])
 def startpage():
-    return render_template("startpage.html")
+    cursor.execute(
+        "SELECT time FROM user WHERE username=%s",
+        (username,),
+    )
+    time = cursor.fetchone()
+    return render_template("startpage.html", time=time)
 
 
 @app.route("/scorecard", methods=["GET", "POST"])
@@ -83,6 +91,7 @@ def userdetail():
 def signup():
     msg = "getting details"
     if request.method == "POST":
+        global email, username, password
         email = request.form["email"]
         username = request.form["username"]
         password = request.form["password"]
@@ -91,7 +100,13 @@ def signup():
             "INSERT INTO user(username, email, password) VALUES (%s,%s,%s)",
             (username, email, password),
         )
+        connection.commit()
+        cursor.execute(
+            "SELECT * FROM user WHERE username=%s AND password=%s",
+            (username, password),
+        )
         record = cursor.fetchone()
+        # print(record)
         if record:
             return render_template("login.html")
         else:
@@ -106,7 +121,7 @@ def game():
     cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
     record = cursor.fetchone()
     clue = record[1]
-    print("Your Clue is")
+    # print("Your Clue is")
     # print(clue)
     # if request.method == "GET":
     #     answer = request.form["answer"]
@@ -158,14 +173,14 @@ def cards():
         # print(record)
         if request.form["button"] == "Room of Requirement":
             if "room" in record:
-                print("present")
+                # print("present")
                 return render_template(
                     "cards.html",
                     name="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/12/hogwarts-legacy-room-of-requirement-1.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
                     ques=ques,
                 )
             else:
-                print("not present")
+                # print("not present")
                 return render_template(
                     "cards.html",
                     name="https://www.pcinvasion.com/wp-content/uploads/2023/02/How-to-make-the-Room-of-Requirement-Bigger-Hogwarts-Legacy-Guide-featured-image.jpg",
@@ -179,7 +194,7 @@ def cards():
             )
         # if request.form["button-quit"] == "quit":
         #     return render_template("startpage.html")
-        
+
         answer = request.form.get("answer")
         cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
         dbans = cursor.fetchone()[0]
@@ -204,49 +219,19 @@ def cards():
     return render_template("cards.html")
 
 
+@app.route("/save_timer", methods=["POST"])
+def save_timer():
+    timer_value = request.form.get("timerValue")
+    # print(timer_value)
+    # Store the timer value in the database
+    cursor.execute("UPDATE user SET time = %s;", (timer_value,))
+    connection.commit()
+    return jsonify({"status": "success"})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+@app.route("/rules", methods=["GET", "POST"])
+def rules():
+    return render_template("rules.html")
 
 
 if __name__ == "__main__":
