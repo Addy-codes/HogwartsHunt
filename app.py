@@ -207,6 +207,8 @@ def cards():
             )
         # if request.form["button-quit"] == "quit":
         #     return render_template("startpage.html")
+        if request.form["button"] == "back-button":
+            return render_template("game.html", clue=clue, level=level)
 
         answer = request.form.get("answer")
         cursor.execute("SELECT * FROM quesdb WHERE level = %s;", (level,))
