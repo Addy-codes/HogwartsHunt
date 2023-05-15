@@ -101,34 +101,112 @@ def signup():
 
 @app.route("/game", methods=["GET", "POST"])
 def game():
-    global clue
+    global clue, level
     cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
     record = cursor.fetchone()
     clue = record[1]
-    # print(clue)
+    print("Your Clue is")
+    print(clue)
     # if request.method == "GET":
     #     answer = request.form["answer"]
     #     print(answer)
-    return render_template("game.html", clue=clue)
+    return render_template("game.html", clue=clue, level=level)
+
+
+# @app.route("/cards", methods=["GET", "POST"])
+# def cards():
+#     global level, clue
+#     print("card called")
+#     # if request.method == "POST":
+#     # print("inside get")
+#     if request.method == "POST":
+#         cursor.execute("SELECT * FROM quesdb WHERE level=%s", (level,))
+#         record = cursor.fetchone()
+#         ques = record[2]
+#         cursor.reset()
+#         if request.form["button"] == "Lake":
+#             return render_template(
+#                 "cards.html",
+#                 name="https://w0.peakpx.com/wallpaper/751/975/HD-wallpaper-hogwarts-castle-castle-hogwarts.jpg",
+#                 ques=ques,
+#             )
+#         if request.form["button"] == "Castle":
+#             return render_template(
+#                 "cards.html",
+#                 name="https://w0.peakpx.com/wallpaper/290/679/HD-wallpaper-harry-potter-harry-potter-and-the-chamber-of-secrets-hogwarts-castle.jpg",
+#                 ques=ques,
+#             )
+#         if request.form["button"] == "Hagrids Hut":
+#             return render_template(
+#                 "cards.html",
+#                 name="https://images.ctfassets.net/usf1vwtuqyxm/1ERSda92XiUgGWICymMgc6/5f3dff987a43cf997de4b85867bd662f/HagridsHut_WB_F3_BuckbeaksExecutionAtHagridsHut_Illust_100615_Land.jpg?w=914&q=70&fm=webp",
+#                 ques=ques,
+#             )
+#         if request.form["button"] == "Hogsmeade Village":
+#             return render_template(
+#                 "cards.html",
+#                 name="https://static1.srcdn.com/wordpress/wp-content/uploads/2017/04/Harry-Potter-Hogsmeade-at-Christmastime-with-Snow-in-the-air-and-pedestrians.jpg?q=50&fit=crop&w=1500&dpr=1.5",
+#                 ques=ques,
+#             )
+#         if request.form["button"] == "Quidditch":
+#             return render_template(
+#                 "cards.html",
+#                 name="https://i.ytimg.com/vi/uhnvXT9mmyU/maxresdefault.jpg",
+#                 ques=ques,
+#             )
+#         # print(record)
+#         if request.form["button"] == "Room of Requirement":
+#             if "room" in record:
+#                 print("present")
+#                 return render_template(
+#                     "cards.html",
+#                     name="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/12/hogwarts-legacy-room-of-requirement-1.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
+#                     ques=ques,
+#                 )
+#             else:
+#                 print("not present")
+#                 return render_template(
+#                     "cards.html",
+#                     name="https://www.pcinvasion.com/wp-content/uploads/2023/02/How-to-make-the-Room-of-Requirement-Bigger-Hogwarts-Legacy-Guide-featured-image.jpg",
+#                     ques=ques,
+#                 )
+#         if request.form["button"] == "Dragon Challenge":
+#             return render_template(
+#                 "cards.html",
+#                 name="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61c67649-6df5-4fd9-8082-6e4021e6dca5/d2qaz3r-44068af1-e256-4f10-8066-64b36b6abe3e.jpg/v1/fill/w_900,h_600,q_75,strp/the_dragon_fight_by_kaelngu_d2qaz3r-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvNjFjNjc2NDktNmRmNS00ZmQ5LTgwODItNmU0MDIxZTZkY2E1XC9kMnFhejNyLTQ0MDY4YWYxLWUyNTYtNGYxMC04MDY2LTY0YjM2YjZhYmUzZS5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ZgEftWIZeYZZOoX8bx5Qu3_wuy6dahj0WCv701GcSPE",
+#                 ques=ques,
+#             )
+#         # print("below")
+#         answer = request.form.get("answer")
+#         dbans = cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
+#         alert_message = "Correct Answer!"
+#         if answer == dbans:
+#             level = level + 1
+#             cursor.execute("UPDATE user SET level = %s;", (level,))
+#             return render_template("game.html", alert_message=alert_message)
+#         alert_message = "Wrong Answer!"
+#         return render_template("game.html", alert_message=alert_message, clue=clue)
+#     return render_template("cards.html")
 
 
 @app.route("/cards", methods=["GET", "POST"])
 def cards():
     global level, clue
-    print("card called")
-    # if request.method == "POST":
-    # print("inside get")
+    # print("card called")
+
     if request.method == "POST":
         cursor.execute("SELECT * FROM quesdb WHERE level=%s", (level,))
         record = cursor.fetchone()
         ques = record[2]
         cursor.reset()
+
         if request.form["button"] == "Lake":
             return render_template(
                 "cards.html",
                 name="https://w0.peakpx.com/wallpaper/751/975/HD-wallpaper-hogwarts-castle-castle-hogwarts.jpg",
                 ques=ques,
             )
+        # Rest of the button checks and return statements...
         if request.form["button"] == "Castle":
             return render_template(
                 "cards.html",
@@ -175,16 +253,26 @@ def cards():
                 name="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61c67649-6df5-4fd9-8082-6e4021e6dca5/d2qaz3r-44068af1-e256-4f10-8066-64b36b6abe3e.jpg/v1/fill/w_900,h_600,q_75,strp/the_dragon_fight_by_kaelngu_d2qaz3r-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvNjFjNjc2NDktNmRmNS00ZmQ5LTgwODItNmU0MDIxZTZkY2E1XC9kMnFhejNyLTQ0MDY4YWYxLWUyNTYtNGYxMC04MDY2LTY0YjM2YjZhYmUzZS5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ZgEftWIZeYZZOoX8bx5Qu3_wuy6dahj0WCv701GcSPE",
                 ques=ques,
             )
-        # print("below")
         answer = request.form.get("answer")
-        dbans = cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
+        cursor.execute("SELECT ans FROM quesdb WHERE level = %s;", (level,))
+        dbans = cursor.fetchone()[0]
+        cursor.reset()
         alert_message = "Correct Answer!"
         if answer == dbans:
-            level = level + 1
+            level += 1
             cursor.execute("UPDATE user SET level = %s;", (level,))
-            return render_template("game.html", alert_message=alert_message)
+            cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
+            record = cursor.fetchone()
+            clue = record[1]
+            return render_template(
+                "game.html", alert_message=alert_message, clue=clue, level=level
+            )
+
         alert_message = "Wrong Answer!"
-        return render_template("game.html", alert_message=alert_message, clue=clue)
+        return render_template(
+            "game.html", alert_message=alert_message, clue=clue, level=level
+        )
+
     return render_template("cards.html")
 
 
