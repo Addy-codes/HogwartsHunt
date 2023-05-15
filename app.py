@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, session, redirect, url_for, jsonify
 import mysql.connector
+import datetime
 
 connection = mysql.connector.connect(
     host="localhost",
@@ -100,6 +101,7 @@ def signup():
 
 @app.route("/game", methods=["GET", "POST"])
 def game():
+    
     cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
     record = cursor.fetchone()
     clue = record[1]
@@ -108,6 +110,8 @@ def game():
     #     answer = request.form["answer"]
     #     print(answer)
     return render_template("game.html", clue=clue)
+
+
 
 
 @app.route("/cards", methods=["GET", "POST"])
@@ -176,6 +180,51 @@ def cards():
         print(answer)
         return render_template("game.html")
     return render_template("cards.html")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":
