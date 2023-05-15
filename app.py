@@ -78,25 +78,28 @@ def startpage():
     return render_template("startpage.html", time=time)
 
 
+def timedelta_to_seconds(timedelta_obj):
+    return int(timedelta_obj.total_seconds())
+
+
+def format_time(seconds):
+    hours, remainder = divmod(seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+    return f"{hours:02d}:{minutes:02d}:{seconds:02d}"
+
+
 @app.route("/scorecard", methods=["GET", "POST"])
 def scorecard():
     cursor.execute("SELECT time FROM user WHERE level=9 ORDER BY time;")
     records = cursor.fetchall()
-
-    # Convert the SQL-formatted time to hh:mm:ss format
-    formatted_records = []
-    for record in records:
-        time = record[
-            "time"
-        ]  # Assuming 'time' is the column name containing SQL-formatted time
-        formatted_time = format_sql_time(
-            time
-        )  # Convert the SQL time to hh:mm:ss format
-        formatted_record = {**record, "time": formatted_time}
-        formatted_records.append(formatted_record)
+    td = []
+    time = []
+    for i in records:
+        td[i] = timedelta_to_seconds(records[i])
+        time[i] = format_time(td[i])
     cursor.execute("SELECT username FROM user ORDER BY time WHERE level=9;")
     name = cursor.fetchall()
-    return render_template("scorecard.html", records=formatted_records, name=name)
+    return render_template("scorecard.html", td=td, name=name)
 
 
 @app.route("/userdetail", methods=["GET", "POST"])
