@@ -26,7 +26,7 @@
         </div>
         <div class="score-box">
           <div id="timer">00:00:00</div>
-          <div class="level">Level: {{ level }} </div>
+          <div class="level">Level: {{level}}</div>
         </div>
         <input class="button-lake" name="button" href="{{url_for('cards')}}" type="submit" value="Lake" />
         <input class="button-castle" name="button" href="{{url_for('cards')}}" type="submit" value="Castle" />
@@ -43,6 +43,10 @@
   </main>
 </body>
 <script>
+  var alertMessage = "{{ alert_message }}";
+  if (alertMessage) {
+    alert(alertMessage);
+  }
   // Get the previous timer value from the cookie
   let timerValue = getCookie("current_time");
 
