@@ -221,7 +221,10 @@ def cards():
                 )
         if request.form["button"] == "Dragon Challenge":
             prevButton = "Dragon Challenge"
-            if "12042003" in record:
+
+            if level == 9:
+                # cursor.execute("SELECT time FROM user WHERE userid=%s", (playerid,))
+                # time = cursor.fetchone()
                 return render_template("endpage.html")
             return render_template(
                 "cards.html",
@@ -270,7 +273,10 @@ def save_timer():
     timer_value = request.form.get("timerValue")
     # print(timer_value)
     # Store the timer value in the database
-    cursor.execute("UPDATE user SET time = %s;", (timer_value,))
+    cursor.execute(
+        "UPDATE user SET time = %s WHERE userid=%s;",
+        (timer_value, playerid),
+    )
     connection.commit()
     return jsonify({"status": "success"})
 

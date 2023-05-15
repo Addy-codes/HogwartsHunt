@@ -23,23 +23,57 @@
   <main>
     <div class="row">
       <div class="container2">
-       
+        <div id="timer">00:00:00</div>
         <h1> Congratulations!
-            <br>
-            You found the treasuer in (time)
+          <br>
+          You found the treasuer
         </h1>
 
       </div>
       <div>
         <form action="game" method="post">
-          <button class="back-button" type="submit"> Back</button>
+          <!-- <button class="back-button" type="submit"> Back</button> -->
+          <input class="back-button" id="quitButton" type="button" value="Save and End" />
         </form>
 
       </div>
 
     </div>
 
-      
+    <script>
+      // ...
+
+      // Function to save the timer value in the database and navigate to the start page
+      function saveTimerValueAndQuit() {
+        // Get the timer value from the div element
+        var timerValue = document.getElementById("timer").textContent;
+
+        // Make an AJAX request to the server to save the timer value
+        fetch("/save_timer", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: "timerValue=" + encodeURIComponent(timerValue),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log("Timer value saved:", data);
+            // Navigate to the start page
+            window.location.href = "{{ url_for('startpage') }}";
+          })
+          .catch(error => {
+            console.error("Error saving timer value:", error);
+            // Navigate to the start page even if there was an error
+            window.location.href = "{{ url_for('startpage') }}";
+          });
+      }
+
+      // Attach the event listener to the Quit button
+      document.getElementById("quitButton").addEventListener("click", saveTimerValueAndQuit);
+
+      // ...
+    </script>
 
 
 
