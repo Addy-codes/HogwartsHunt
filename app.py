@@ -80,7 +80,7 @@ def startpage():
 
 @app.route("/scorecard", methods=["GET", "POST"])
 def scorecard():
-    cursor.execute("SELECT time FROM user ORDER BY time WHERE level=9;")
+    cursor.execute("SELECT time FROM user WHERE level=9 ORDER BY time;")
     records = cursor.fetchall()
 
     # Convert the SQL-formatted time to hh:mm:ss format
