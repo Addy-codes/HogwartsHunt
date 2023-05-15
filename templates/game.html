@@ -27,6 +27,8 @@
           <input class="button-prev" name="prev-level" id="prev-level" href="{{url_for('game')}}" type="submit"
             value="Undo Last Answer" />
 
+          <input class="button-prev" name="reset" id="reset" href="{{url_for('login')}}" type="submit" value="RESET" />
+
           <input class="button-quit" href="{{url_for('index')}}" id="quitButton" type="button" value="Save & Quit" />
 
       </div>
@@ -90,7 +92,7 @@
       seconds = ("0" + seconds).slice(-2);
 
 
-      timer.textContent = hours + ":" + minutes + ":" + seconds; 
+      timer.textContent = hours + ":" + minutes + ":" + seconds;
       total_sec = hours * 60 * 60 + minutes * 60 + seconds;
       //console.log(total_sec);
       setCookie("current_time", currentTimeMS / 1000, 1);
