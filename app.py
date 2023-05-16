@@ -2,14 +2,26 @@ from flask import Flask, render_template, request, session, redirect, url_for, j
 import mysql.connector
 import datetime
 
+# ClearDB connection
+
+# connection = mysql.connector.connect(
+#     host="us-cdbr-east-06.cleardb.net",
+#     port="3306",
+#     database="heroku_f8e49261e8690a7",
+#     user="bcc230d54fe32a",
+#     password="42fe326e",
+# )
+
+
+# Jawsdb connection
+
 connection = mysql.connector.connect(
-    host="us-cdbr-east-06.cleardb.net",
+    host="rwo5jst0d7dgy0ri.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     port="3306",
-    database="heroku_f8e49261e8690a7",
-    user="bcc230d54fe32a",
-    password="42fe326e",
+    database="gxodx3vdh8i0wk8a",
+    user="bgcejd051uyjgftq",
+    password="fnvvvnte26e0u1d5",
 )
-# cursor = connection.cursor()
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
