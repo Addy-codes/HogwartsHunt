@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google  -->
+    <meta
+      name="google-signin-client_id"
+      content="harry-potter-store-340019.apps.googleusercontent.com"
+    />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <title>Login</title>
+
+    <!-- Link with css -->
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/global-styles.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <!-- Container -->
+    <div class="container">
+      <div class="card">
+        <div class="login">
+          <div class="login__back">
+            <a href="index.html">
+              <img src="../rsc/img/casa.png" alt="Icon Home" />
+            </a>
+          </div>
+          <div class="login__avatar">
+            <img
+              src="https://www.pngarea.com/pngm/193/1769502_harry-potter-logo-png-hogwarts-crest-circular-doormat.png"
+              alt="avatar login"
+            />
+          </div>
+          <div class="login__title">
+            <img
+              src="https://fontmeme.com/permalink/230511/e474a23a381f4c57d5b107fefd6a4dc4.png"
+              alt="login  title"
+            />
+          </div>
+          <form action="{{url_for('login')}}" method="post" class="login__form">
+            <fieldset>
+              <label for="username">Username: </label>
+              <input
+                type="text"
+                placeholder="Enter username"
+                id="username"
+                name="username"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="username">Password: </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                id="password"
+                name="password"
+                required
+              />
+            </fieldset>
+
+            <fieldset class="fs__button">
+              <button class="login__button" type="submit">Log in</button>
+
+              <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            </fieldset>
+
+            <fieldset>
+              <a href="#">Lost your password?</a>
+              <div class="no_account">
+                <a href="signup.html">Don't have an account?</a>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

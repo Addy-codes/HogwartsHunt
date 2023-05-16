@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google  -->
+    <meta
+      name="google-signin-client_id"
+      content="harry-potter-store-340019.apps.googleusercontent.com"
+    />
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+    <title>Sign Up</title>
+
+    <!-- Link with css -->
+    <link rel="stylesheet" href="../css/home.css" />
+    <link rel="stylesheet" href="../css/global-styles.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <!-- Container -->
+    <div class="container">
+      <div class="card">
+        <div class="signup">
+          <div class="login__avatar">
+            <img
+              src="https://www.pngarea.com/pngm/193/1769502_harry-potter-logo-png-hogwarts-crest-circular-doormat.png"
+              alt="avatar login"
+            />
+          </div>
+          <div class="login__title">
+            <img
+              src="https://fontmeme.com/permalink/230511/e96090e6a0d1c69ccc1a97d67aca3cda.png"
+              alt="login  title"
+            />
+          </div>
+
+          <form action="#" class="signup__form">
+            <fieldset>
+              <label for="email">Email: </label>
+              <input
+                type="text"
+                placeholder="Enter Email"
+                id="email"
+                name="email"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="username">Username: </label>
+              <input
+                type="text"
+                placeholder="Enter username"
+                id="username"
+                name="username"
+                required
+              />
+            </fieldset>
+            <fieldset>
+              <label for="password">Password: </label>
+              <input
+                type="password"
+                placeholder="Enter your password"
+                id="password"
+                name="password"
+                required
+              />
+            </fieldset>
+            <fieldset class="fs__button">
+              <button class="login__button" type="submit">Sign Up</button>
+            </fieldset>
+            <fieldset>
+              <a href="login.html">Already have an account?</a>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
