@@ -1,0 +1,483 @@
+@font-face {
+    font-family: HARRYP;
+    src: url(../rsc/fonts/HARRYP__.TTF);
+  }
+/* Header Section Styles */
+
+button {
+    background: transparent;
+    color: #fff;
+    border: 0;
+    padding: 10px 20px;
+    font-size: 20px;
+    border-radius: 2px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+}
+button:hover {
+    border: 0px ;
+
+}
+button:hover {
+    background: #fff;
+    color:#000;
+    transition: all 0.5s ease-in-out;
+}
+
+.header{    
+    background-size:auto;
+    height: 100px;
+    background-position: 0 0;
+}
+body{
+    background: url("https://images8.alphacoders.com/110/thumb-1920-1102284.jpg") no-repeat center center;
+    background-size: cover;
+    background-position: 0 0;
+}
+.header__wrapper{
+    display: grid;
+    gap: 2rem;
+    height: 100px;
+}
+.header__img-title{
+    font-family: HARRYP, sans-serif;
+    font-size: 30px;
+    color: white;
+    position: relative;
+    text-align: center;
+    top: 60%;
+
+    text-shadow:     0 1px 0 hsl(174,5%,80%),
+	                 0 2px 0 hsl(174,5%,75%),
+	                 0 3px 0 hsl(174,5%,70%),
+	                 0 4px 0 hsl(174,5%,66%),
+	                 0 5px 0 hsl(174,5%,64%),
+	                 0 6px 0 hsl(174,5%,62%),
+	                 0 7px 0 hsl(174,5%,61%),
+	                 0 8px 0 hsl(174,5%,60%),
+	                 0 0 5px rgba(0,0,0,.05),
+	                0 1px 3px rgba(0,0,0,.2),
+	                0 3px 5px rgba(0,0,0,.2),
+	               0 5px 10px rgba(0,0,0,.2),
+	              0 10px 10px rgba(0,0,0,.2),
+	              0 20px 20px rgba(0,0,0,.3);
+
+
+}
+.header__row1{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    grid-column: 1/ span 3;
+}
+.header__row2{
+
+    display: flex;
+    justify-content: center;
+    grid-column: 1 / span 3;
+}
+.header__row3{
+    grid-column: 1 / span 3;
+    display: flex;
+    align-items: flex-end;
+}
+
+.header__login a h2{
+    color: var(--white1);
+    padding: .5rem 1rem;
+    z-index: 200;
+}
+.header__login a h2{
+    font-family: HARRYP;
+    font-weight: 500;
+    font-size: 1.8rem;
+}
+
+.header__row1{
+    position: fixed;
+    z-index: 200;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    transition: 0.5s all ease;
+    
+}
+.header__row1::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 80px;
+    top: 0;
+    background-color: rgba(18, 24, 14, 0.508);
+    z-index: 100;
+    position: fixed;
+}
+.header__img-title{
+    max-width: 600px;
+}
+.header__menu-img{
+    filter: brightness(100);
+
+}
+.header__sucursal img{
+    width: 25px;
+    padding-left: 1rem;
+    padding-right: .7rem;
+    filter: brightness(100);
+
+}
+
+.header__sucursal a{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+}
+
+.header__sucursal a p{
+    color: var(--gray1);
+
+    font-weight: 100;
+    font-size: 1.1rem;
+}
+
+
+/* Nav part Styles*/
+
+header{
+    position: relative;
+}
+.nav__list{
+    width: 62%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    height: 100vh;
+    background-color: var(--green1);
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    z-index: 200;
+}
+
+.nav__close-icon{
+    width: 30px;
+    filter: invert(1);
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    z-index: 100;
+    opacity: 1;
+    transition: 1.5s all ease;
+}
+
+
+.nav__header a{
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.cont-logo{
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+
+}
+
+.cont-logo img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.nav__item{
+    width: 80%;
+    text-align: center;
+    padding: 1.2rem;
+    color: white;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--light-g1);
+    transition: all 0.5s ease;
+}
+.nav__item h2{
+    color: white;
+    width: 100%;
+}
+
+.nav__sublist{
+    width:100%;
+    color: var(--gray1);
+    padding: 0;
+    display: flex;
+    visibility: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: -100;
+    transform: translateY(-120%);
+    transition: 0.5s transform ease;
+}
+.nav__subitem{
+    padding: 1em 0;
+    text-align: center;
+    width:60%;
+    font-size: .9rem;
+    border-bottom: 1px solid var(--light-g2);
+    transition: 0.5s box-shadow ease;
+} 
+.nav__subitem h2{
+    color: var(--gray1);
+}
+
+
+.nav__list{
+    transform: translateX(-100%);
+    transition: 0.5s all ease;
+    overflow-y: auto;
+}
+.nav__list.show{
+    transform: translateX(0);
+}
+.bg-overlay{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right:0 ;
+    height: 100vh;
+    background-color: rgba(18, 24, 14, 0.908);
+    display: none;
+    transition: 0.5s all ease;
+}
+
+.bg-overlay.active{
+    display: block;
+}
+
+.contact{
+    transform: translateY(-350%);
+    transition: 0.5s all ease;
+}
+.nav__sublist.on{
+    transform: translateY(0);
+    visibility: visible;
+}
+.contact.on{
+    transform: translateY(-20%);
+}
+
+.nav__list.on{
+    margin-bottom: 2rem;
+}
+
+.header__login a h2:hover{
+    color: var(--orange1);
+    cursor: pointer;
+}
+
+.header__carrito:hover{
+    cursor: pointer;
+    filter: brightness(1);
+
+}
+.header__menu-img:hover{
+    cursor: pointer;
+    filter: brightness(1);
+
+}
+.header__sucursal a:hover > img{
+    cursor: pointer;
+    filter: brightness(1);
+    color: var(--orange1);
+}
+.header__sucursal a:hover > p{
+    cursor: pointer;
+    color: var(--orange1);
+}
+
+.nav__close-icon img:hover{
+    cursor: pointer;
+    transform: scale(.9);
+    filter: contrast(0.5);
+}
+.nav__item:hover{
+    box-shadow: 0 1px  15px var(--light-g1);
+    cursor: pointer;
+}
+.nav__subitem:hover{
+    box-shadow: 0 1px  15px var(--light-g2);
+    cursor: pointer;
+}
+.nav__header-name{
+    font-family: 'Harry School';
+    font-size: 3.5rem;
+    color: goldenrod;
+    margin: 0;
+}
+.nav2__wrapper {
+    display: none;
+}
+
+.header__row1::after{
+    visibility: hidden;
+}
+
+@media  screen and (min-width: 768px){
+    .nav__close-icon, .header__menu-img, .nav__header, .bg-overlay{
+        display: none;
+    }
+    .header{
+        /* height: 450px; */
+    }
+    .header__row3{
+        display: flex;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+    }
+   .header__login, .header__carrito{
+       display: none;
+   }
+    .nav2__wrapper{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+    .nav2__item img{
+        width: 30px;
+    }
+    .nav2{
+        position: fixed;
+        width: 100%;
+        z-index: 200;
+    }
+    .nav2__item{
+        color: var(--white1);
+        padding: .5rem 1rem;
+        font-weight: 100;
+        font-size: 4rem;
+        z-index: 200;
+        font-family: HARRYP;
+
+    }
+
+    .nav2__item:hover{
+        color: var(--orange1);
+    }
+    .nav2__item a img:hover{
+        filter: brightness(1.3);
+    }
+    .header__sucursal a p{
+        font-size: 1.6rem;
+    }
+    .header__sucursal a img{
+        width: 35px;
+    }
+
+}
+/* End of Header Section Styles */
+
+
+
+
+
+/* Footer Section  */
+footer{
+    background-color: var(--green1);
+    padding-top: 5rem;
+    box-shadow: 2px 2px 10px #000;
+}
+
+.footer__wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    gap: 1rem;
+    justify-items: center;
+}
+
+.footer__title{
+    font-size: 1.9rem;
+    color: var(--gray2);
+}
+.footer__item img{
+    width: 17px;
+    filter: invert(1);
+}
+
+.footer__item{
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    margin: 0;
+    transition: all 0.5s ease;
+}
+.footer__item p{
+    font-size: 1.6rem;
+    margin: 5px 0;
+    color: var(--gray2);
+}
+.footer__row1 .footer__item p{
+    margin: 7px 0;
+
+}
+
+.footer__list{
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.footer__row4 .footer__list{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+.footer__row4 .footer__item img{
+    width: 50px;
+    filter: invert(0);
+}
+
+.footer__item:hover p,
+.footer__item:hover{
+    color: var(--orange1);
+    cursor: pointer;
+}
+.footer__row4 .footer__item:hover{
+    filter: invert(0);
+}
+
+@media  screen and (min-width: 768px){
+    .footer__wrapper{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .footer__row4{
+        grid-column: 1 / 4 ;
+    }
+    .footer__row4 .footer__list{
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+    }
+    .footer__row4{
+        display: flex;
+        gap: 2rem;
+        padding-top: 2rem;
+    }
+    .footer__item p{
+        font-size: 1.8rem;
+    }
+    .footer__title{
+        font-size: 2.1rem;
+    }
+}
+/* End of Footer Section  */

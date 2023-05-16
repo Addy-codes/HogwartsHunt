@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure hunt at Hogwarts</title>
+    <link rel="stylesheet" href="../static/css/global-styles.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+    <link rel="stylesheet" href="../static/css/rules.css">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://www.1001fonts.com/parry-hotter-font.html?size=-4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header__wrapper">
+            <div class="header__row1">
+                <!-- Navegador de mas de 768px -->
+                <nav class="nav2">
+                    <div class="nav2__wrapper">
+
+                        <li class="nav2__item"><a href="{{url_for('startpage')}}" class="nav2__item">Home</a></li>
+                        <li class="nav2__item"><a href="{{url_for('userdetail')}}" class="nav2__item">User Details</a>
+                        </li>
+                        <li class="nav2__item"><a href="{{url_for('rules')}}" class="nav2__item">Rules</a></li>
+                        <li class="nav2__item"><a href="{{url_for('scorecard')}}" class="nav2__item">Leaderboard</a></li>
+                        <li class="nav2__item"><a href="{{url_for('index')}}" class="nav2__item">Logout</a></li>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+        </div>
+    </header>
+    <div class="scroll-container">
+        <div class="rules">
+            
+            <h2>Rules:</h2>
+          <ul>
+            <li>Winner will be the player who finds the Treasure in least amount of time</li>
+            <li>You will be given a set of clues that will lead them to different locations around the game area.</li>
+            <li>The clues will be related to different characters, spells, or objects from the Harry Potter series.</li>
+            <li>At each location, you will have to solve a riddle or complete a task to earn a clue for the next location.</li>
+            <li>The game will be timed, and the player with the best time will win in the event of a tie.</li>
+            <li>The timer will start as soon as the player enters the game and will continue running until the game is completed.</li>
+            <li>Answering at wrong location on the map might lead to a deadend.</li>
+            <li>Clues would lead you to right locations.</li>
+          </ul>
+        </div>
+      </div>
+
+</body>
+</html>

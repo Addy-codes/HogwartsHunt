@@ -1,0 +1,96 @@
+.container2 h1 {
+    /* margin: auto;
+    top: 60%;
+    left: 35%;
+    position: absolute;
+    text-align: center; */
+    color: whitesmoke;
+    font-family: HARRYP;
+    text-shadow: 0 1px 0 hsl(174, 5%, 80%),
+        0 2px 0 hsl(174, 5%, 75%),
+        0 3px 0 hsl(174, 5%, 70%),
+        0 4px 0 hsl(174, 5%, 66%),
+        0 5px 0 hsl(174, 5%, 64%),
+        0 6px 0 hsl(174, 5%, 62%),
+        0 7px 0 hsl(174, 5%, 61%),
+        0 8px 0 hsl(174, 5%, 60%),
+        0 0 5px rgba(0, 0, 0, .05),
+        0 1px 3px rgba(0, 0, 0, .2),
+        0 3px 5px rgba(0, 0, 0, .2),
+        0 5px 10px rgba(0, 0, 0, .2),
+        0 10px 10px rgba(0, 0, 0, .2),
+        0 20px 20px rgba(0, 0, 0, .3);
+    font-size: 50px;
+
+}
+main {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .row {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 50vh;
+  }
+
+.container2{
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  text-align: center;
+}
+body{
+    background-image: url(../rsc/img/end.png);
+    background-repeat: no-repeat ;
+    background-size: cover;
+
+}
+
+.back-button {
+    /* top: 78%;
+    left: 37%;
+    margin: 0 auto;
+    position: absolute;
+    border-radius: 0;
+    border-style: none;
+    width: 300px; */
+    font-size: 24px;
+    padding: 10px;
+}
+
+#timer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    font-family: HARRYP;
+    z-index: 9999;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 5px;
+
+
+}
+
+#timer .minutes {
+    padding-right: 5px;
+}
+
+#timer .seconds {
+    padding-left: 5px;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure hunt at Hogwarts</title>
+
+    <link rel="stylesheet" href="../static/css/cards.css">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://www.1001fonts.com/parry-hotter-font.html?size=-4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+<body>
+  <main>
+    <div class="row">
+      <div class="container">
+        <div id="timer">00:00:00</div>
+
+        <div class="question-box">
+          <div class="question">
+            Ques: {{ ques }}
+          </div>
+        </div>
+        <img src="{{ name }}" alt="">
+
+        <form action="{{url_for('cards')}}" method="post" class="login__form">
+          <fieldset>
+            <label for="answer"></label>
+            <input type="text" placeholder="Enter answer" id="answer" name="answer" />
+          </fieldset>
+
+          <fieldset class="fs__button">
+            <button class="submit_button" name="button" type="submit">Submit</button>
+          </fieldset>
+
+
+          <div>
+            <form action="game" method="post">
+              <input class="back-button" name="backbutton" href="{{url_for('game')}}" type="submit" value="Back" />
+            </form>
+
+          </div>
+
+      </div>
+
+
+
+  </main>
+
+</body>
+<script>
+  // Get the previous timer value from the cookie
+  let timerValue = getCookie("current_time");
+
+  // If the timer value exists, start the stopwatch with the previous value
+  if (timerValue) {
+    startStopwatch(timerValue);
+  } else {
+    startStopwatch(0);
+  }
+
+  // Start the stopwatch function
+  function startStopwatch(startTime) {
+    let timer = document.getElementById("timer");
+    let startTimeMS = startTime * 1000;
+    let currentTimeMS = startTimeMS;
+    let interval;
+
+    // Update the timer every 10 milliseconds
+    interval = setInterval(() => {
+      currentTimeMS += 1000;
+      console.log(currentTimeMS / 1000)
+
+      let hours = Math.floor(currentTimeMS / 3600000);
+      let minutes = Math.floor((currentTimeMS - hours * 3600000) / 60000);
+      let seconds = Math.floor(
+        (currentTimeMS - hours * 3600000 - minutes * 60000) / 1000
+      );
+      // let milliseconds = Math.floor(
+      //   (currentTimeMS - hours * 3600000 - minutes * 60000 - seconds * 1000) /
+      //     10
+      // );
+
+      hours = ("0" + hours).slice(-2);
+      minutes = ("0" + minutes).slice(-2);
+      seconds = ("0" + seconds).slice(-2);
+      // milliseconds = ("0" + milliseconds).slice(-2);
+
+      timer.textContent =
+        hours + ":" + minutes + ":" + seconds;// + "." + milliseconds;
+      total_sec = hours * 60 * 60 + minutes * 60 + seconds;
+      //console.log(total_sec);
+      setCookie("current_time", currentTimeMS / 1000, 1)
+      return total_sec;
+    }, 1000);
+
+    console.log(interval);
+
+    // Set the interval ID to a cookie so that it persists across different pages
+    setCookie("intervalID", interval, 1);
+  }
+
+  // Set a cookie function
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      let date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+
+  // Get a cookie function
+  function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+</script>
+
+
+</html>

@@ -1,0 +1,169 @@
+.container{
+    position: absolute;
+    width: 400px;
+    height: 470px;
+    top: 50%;
+    left: 50%;  
+    margin: 0 auto;
+    transform: translateY(-50%) translateX(-50%);
+    border-radius: 12px;
+
+}
+
+  .card {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    transition: transform 1500ms;
+    transform-style: preserve-3d;
+  }
+
+
+.login,
+.signup {
+background-color: #004C4C;
+height: 100%;
+width: 100%;
+border-radius: 2rem;
+box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+position: absolute;
+
+padding: 2rem;
+
+}
+
+.signup {
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+body{
+    background: url("https://images8.alphacoders.com/110/thumb-1920-1102284.jpg") no-repeat center center;
+    background-size: cover;
+    background-position: 0 0;
+}
+.login__back{
+    width: 30px;
+    position: absolute;
+    right: 1.5rem;
+    transition: all ease 0.5s;
+}
+.login__avatar{
+    position: absolute;
+    border-radius: 50%;
+    top: -10%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+.login__avatar{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 2rem;
+}
+
+.login__title{
+    padding: 2rem 0;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.login__title img{
+    height: 70px;
+}
+
+.login__form{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+    margin-top: 2rem;
+}
+fieldset{
+    border: none;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+fieldset:nth-of-type(3){
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+fieldset label{
+    color: white;
+    font-weight: 600;
+    font-size: 1.6rem;
+    font-family: sans-serif;
+    margin-bottom: .2rem;
+}
+fieldset input{
+    width: 100%;
+    border-radius: 12px;
+    background-color: #004C4C;
+    border-top: none;
+    border-left: none;
+    border-bottom: 1px solid white;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    text-align: 1rem;
+}
+
+fieldset input::placeholder{
+    padding: 1rem;
+    color: var(--gray1);
+    font-size: 1.5rem;
+}
+fieldset input:focus{
+    outline: none;
+    border-bottom: 1px solid #daa520;
+    
+}
+.fs__button{
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+}
+.login__button, .g-signin2{
+    flex: 1;
+}
+.g-signin2{
+    display: flex;
+    justify-content: center;
+}
+
+.login__button{
+    padding: .5rem;
+    flex: 1;
+    background-color: #daa520;
+    color: white;
+    border-radius: 12px;
+    outline: none;
+    font-size: 1.6rem;
+    transition: all 0.5s ease;}
+
+.login__button:hover{
+    cursor: pointer;
+    background-color: #594d2f;
+}
+.login__back:hover{
+    filter: brightness(1.2);
+}
+
+fieldset a{
+    color: #daa520;
+    transition: all 0.5s ease;
+    font-size: 1.6rem;
+}
+fieldset a:hover{
+    color: #594d2f;
+
+}
+
+
+
+

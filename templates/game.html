@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/game.css" />
+  <title>Begin</title>
+</head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../static/css/game.css" />
+  <title>Begin</title>
+</head>
+
+<body>
+  <main>
+    <div class="container">
+      <div class="buttons">
+
+        <form action="cards" method="post">
+
+          <input class="button-prev" name="prev-level" id="prev-level" href="{{url_for('game')}}" type="submit"
+            value="Undo Last Answer" />
+
+          <input class="button-prev" name="reset" id="reset" href="{{url_for('login')}}" type="submit" value="RESET" />
+
+          <input class="button-quit" href="{{url_for('index')}}" id="quitButton" type="button" value="Save & Quit" />
+
+      </div>
+      <!-- <input class="button-quit" name="button" href="{{url_for('startpage')}}" type="submit" value="Quit" /> -->
+      <div class="clue-box">
+        <h2>Clue: {{ clue }}</h2>
+      </div>
+      <div class="score-box">
+        <div id="timer">00:00:00</div>
+        <div class="level">Level: {{level}}</div>
+
+      </div>
+      <input class="button-lake" name="button" href="{{url_for('cards')}}" type="submit" value="Lake" />
+      <input class="button-castle" name="button" href="{{url_for('cards')}}" type="submit" value="Castle" />
+      <input class="button-hut" name="button" href="{{url_for('cards')}}" type="submit" value="Hagrids Hut" />
+      <input class="button-hogsmeade" name="button" href="{{url_for('cards')}}" type="submit"
+        value="Hogsmeade Village" />
+      <input class="button-quidditch" name="button" href="{{url_for('cards')}}" type="submit" value="Quidditch" />
+      <input class="button-room" name="button" href="{{url_for('cards')}}" type="submit" value="Room of Requirement" />
+      <input class="button-dragon" name="button" href="{{url_for('cards')}}" type="submit" value="Dragon Challenge" />
+      <img src="../static/rsc/img/map.jpg" alt="" />
+      </form>
+    </div>
+  </main>
+</body>
+<script>
+  var alertMessage = "{{ alert_message }}";
+  if (alertMessage) {
+    alert(alertMessage);
+  }
+  // Get the previous timer value from the cookie
+  let timerValue = getCookie("current_time");
+
+  // If the timer value exists, start the stopwatch with the previous value
+  if (timerValue) {
+    startStopwatch(timerValue);
+  } else {
+    startStopwatch(0);
+  }
+
+  // Start the stopwatch function
+  function startStopwatch(startTime) {
+    let timer = document.getElementById("timer");
+    let startTimeMS = startTime * 1000;
+    let currentTimeMS = startTimeMS;
+    let interval;
+
+    // Update the timer every 10 milliseconds
+    interval = setInterval(() => {
+      currentTimeMS += 1000;
+      console.log(currentTimeMS / 1000);
+
+      let hours = Math.floor(currentTimeMS / 3600000);
+      let minutes = Math.floor((currentTimeMS - hours * 3600000) / 60000);
+      let seconds = Math.floor(
+        (currentTimeMS - hours * 3600000 - minutes * 60000) / 1000
+      );
+
+      hours = ("0" + hours).slice(-2);
+      minutes = ("0" + minutes).slice(-2);
+      seconds = ("0" + seconds).slice(-2);
+
+
+      timer.textContent = hours + ":" + minutes + ":" + seconds;
+      total_sec = hours * 60 * 60 + minutes * 60 + seconds;
+      //console.log(total_sec);
+      setCookie("current_time", currentTimeMS / 1000, 1);
+      return total_sec;
+    }, 1000);
+
+    console.log(interval);
+
+    // Set the interval ID to a cookie so that it persists across different pages
+    setCookie("intervalID", interval, 1);
+  }
+
+  // Set a cookie function
+  function setCookie(name, value, days) {
+    let expires = "";
+    if (days) {
+      let date = new Date();
+      date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
+      expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+  }
+
+  // Get a cookie function
+  function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+  // ...
+
+  // Function to save the timer value in the database and navigate to the start page
+  function saveTimerValueAndQuit() {
+    // Get the timer value from the div element
+    var timerValue = document.getElementById("timer").textContent;
+
+    // Make an AJAX request to the server to save the timer value
+    fetch("/save_timer", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "timerValue=" + encodeURIComponent(timerValue),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Timer value saved:", data);
+        // Navigate to the start page
+        window.location.href = "{{ url_for('startpage') }}";
+      })
+      .catch((error) => {
+        console.error("Error saving timer value:", error);
+        // Navigate to the start page even if there was an error
+        window.location.href = "{{ url_for('startpage') }}";
+      });
+  }
+
+
+
+  // Attach the event listener to the Quit button
+  document
+    .getElementById("quitButton")
+    .addEventListener("click", saveTimerValueAndQuit);
+
+    // ...
+</script>
+
+</html>

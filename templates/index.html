@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure hunt at Hogwarts</title>
+    <link rel="stylesheet" href="../static/css/global-styles.css">
+    <link rel="stylesheet" href="../static/css/home.css">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://www.1001fonts.com/parry-hotter-font.html?size=-4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header class="header">
+        <div class="header__wrapper">
+            <div class="header__row1">
+                <nav class="nav2">
+                    <div class="nav2__wrapper">
+
+                        <li class="nav2__item"><a href="{{url_for('index')}}" class="nav2__item">Home</a></li>
+                        <li class="nav2__item"><a href="{{url_for('about')}}" class="nav2__item">About Us</a></li>
+                        <li class="nav2__item"><a href="{{url_for('login')}}" class="nav2__item">Login / Signup</a></li>
+                    </div>
+                </nav>
+
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <div class="header__row2">
+        <div class="header__img-title">
+            <h1 class="main_landing">Hogwarts Quest Hunt</h1>
+            <div class="start_button">
+                <form method="get" action="login">
+                    <button href="{{url_for('login')}}">Start</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

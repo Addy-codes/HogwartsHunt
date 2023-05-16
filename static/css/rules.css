@@ -1,0 +1,42 @@
+.scroll-container {
+    display: flex;
+    justify-content:center;
+
+    height: 80vh;
+  }
+body{
+    backdrop-filter: blur(5px);
+}
+  
+  .scroll-img {
+    position: absolute;
+    width: 80%;
+    z-index: -1;
+  }
+  
+  .rules {
+    text-align: center;
+    
+    color: whitesmoke;
+    position: relative;
+    top:28%;
+    max-width: 50%;
+    text-align: center;
+    text-shadow: 1px 1px 1px #000;
+  }
+  
+  .rules h2 {
+    margin-top: 0;
+    font-size: 50px;
+  }
+  
+  .rules ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .rules li {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }

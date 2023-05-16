@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Treasure hunt at Hogwarts</title>
+    <link rel="stylesheet" href="../static/css/global-styles.css">
+
+    <link rel="stylesheet" href="../static/css/endpage.css">
+
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://www.1001fonts.com/parry-hotter-font.html?size=-4">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+
+<body>
+  <main>
+    <div class="row">
+      <div class="container2">
+        <div id="timer"><h1>00:00:00</h1></div>
+        <h1> Congratulations!
+          <br>
+          You found the treasuer
+        </h1>
+      </div>
+      <div>
+        <form action="game" method="post">
+          <!-- <button class="back-button" type="submit"> Back</button> -->
+          <input class="back-button" id="quitButton" type="button" value="Save and End" />
+        </form>
+
+      </div>
+
+    </div>
+  </main>
+
+    <script>
+      // ...
+  function getCookie(name) {
+    let nameEQ = name + "=";
+    let ca = document.cookie.split(";");
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) == " ") c = c.substring(1, c.length);
+      if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+    }
+    return null;
+  }
+
+function setEndTime(time)
+{
+  currentTimeMS =time;
+  let timer = document.getElementById("timer");
+  let hours = Math.floor(currentTimeMS / 3600);
+      let minutes = Math.floor((currentTimeMS - hours * 3600) / 60);
+      let seconds = Math.floor(
+        (currentTimeMS - hours * 3600 - minutes * 60) / 1
+      );
+
+      hours = ("0" + hours).slice(-2);
+      minutes = ("0" + minutes).slice(-2);
+      seconds = ("0" + seconds).slice(-2);
+
+      console.log(hours, minutes, seconds);
+
+      timer.textContent = hours + ":" + minutes + ":" + seconds;
+
+
+  return null;
+}
+var endtime = getCookie("current_time");
+setEndTime(endtime);
+
+
+   //console.log(endtime)
+      // Function to save the timer value in the database and navigate to the start page
+      function saveTimerValueAndQuit() {
+        // Get the timer value from the div element
+        var timerValue = document.getElementById("timer").textContent;
+
+        // Make an AJAX request to the server to save the timer value
+        fetch("/save_timer", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: "timerValue=" + encodeURIComponent(timerValue),
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log("Timer value saved:", data);
+            // Navigate to the start page
+            window.location.href = "{{ url_for('startpage') }}";
+          })
+          .catch(error => {
+            console.error("Error saving timer value:", error);
+            // Navigate to the start page even if there was an error
+            window.location.href = "{{ url_for('startpage') }}";
+          });
+      }
+
+      // Attach the event listener to the Quit button
+      document.getElementById("quitButton").addEventListener("click", saveTimerValueAndQuit);
+
+      // ...
+    </script>
+
+
+
+  </main>
+
+</body>
+
+</html>
