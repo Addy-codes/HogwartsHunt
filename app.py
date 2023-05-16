@@ -3,11 +3,11 @@ import mysql.connector
 import datetime
 
 connection = mysql.connector.connect(
-    host="rwo5jst0d7dgy0ri.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    host="us-cdbr-east-06.cleardb.net",
     port="3306",
     database="heroku_f8e49261e8690a7",
-    user="gxodx3vdh8i0wk8a",
-    password="fnvvvnte26e0u1d5",
+    user="bcc230d54fe32a",
+    password="42fe326e",
 )
 # cursor = connection.cursor()
 
