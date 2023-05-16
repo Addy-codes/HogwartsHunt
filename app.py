@@ -47,6 +47,7 @@ def login():
         # print(level)
         # print(record)
         # print("222222")
+        cursor.close()
         if record:
             session["loggedin"] = True
             session["username"] = record[1]
