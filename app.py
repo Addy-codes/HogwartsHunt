@@ -9,7 +9,7 @@ connection = mysql.connector.connect(
     user="bcc230d54fe32a",
     password="42fe326e",
 )
-cursor = connection.cursor()
+# cursor = connection.cursor()
 
 app = Flask(__name__)
 app.secret_key = "super secret key"
@@ -38,6 +38,7 @@ def login():
 
         # print(username)
         # print(password)
+        cursor = connection.cursor()
         cursor.execute(
             "SELECT * FROM user WHERE username=%s AND password=%s",
             (username, password),
@@ -71,11 +72,13 @@ def about():
 
 @app.route("/startpage", methods=["GET", "POST"])
 def startpage():
+    cursor = connection.cursor()
     cursor.execute(
         "SELECT time FROM user WHERE username=%s",
         (username,),
     )
     time = cursor.fetchone()
+    cursor.close()
     return render_template("startpage.html", time=time)
 
 
@@ -91,6 +94,7 @@ def format_time(seconds):
 
 @app.route("/scorecard", methods=["GET", "POST"])
 def scorecard():
+    cursor = connection.cursor()
     cursor.execute("SELECT * FROM user WHERE level=9 ORDER BY time;")
     records = cursor.fetchall()
     td = []
@@ -103,6 +107,7 @@ def scorecard():
     for i in range(len(td)):
         temp1 = format_time(td[i])
         time.append(temp1)
+    cursor.close()
     return render_template("scorecard.html", time=time, name=name)
 
 
@@ -113,6 +118,7 @@ def userdetail():
 
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
+    cursor = connection.cursor()
     msg = "getting details"
     if request.method == "POST":
         global email, username, password
@@ -130,12 +136,12 @@ def signup():
             (username, password),
         )
         record = cursor.fetchone()
+        cursor.close()
         # print(record)
         if record:
             return render_template("login.html")
         else:
             return render_template("signup.html")
-
     return render_template("signup.html")
 
 
@@ -145,6 +151,7 @@ def game():
     # if level == 1:
     #     cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level - 1),))
     # else:
+    cursor = connection.cursor()
     cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
     record = cursor.fetchone()
     clue = record[1]
@@ -153,6 +160,7 @@ def game():
     # if request.method == "GET":
     #     answer = request.form["answer"]
     #     print(answer)
+    cursor.close()
     return render_template("game.html", clue=clue, level=level)
 
 
@@ -162,16 +170,19 @@ def cards():
     # print("card called")
 
     if request.method == "POST":
+        cursor = connection.cursor()
         cursor.execute("SELECT * FROM quesdb WHERE level=%s", (level,))
         record = cursor.fetchone()
         ques = record[2]
         cursor.reset()
         global prevButton
         if "backbutton" in request.form:
+            cursor.close()
             return render_template("game.html", clue=clue, level=level)
         if "prev-level" in request.form:
             if level == 1:
                 alert_message = "You are already on the first level"
+                cursor.close()
                 return render_template(
                     "game.html",
                     alert_message=alert_message,
@@ -187,6 +198,7 @@ def cards():
             cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
             record = cursor.fetchone()
             clue = record[1]
+            cursor.close()
             return render_template("game.html", clue=clue, level=level)
         if "reset" in request.form:
             cursor.execute(
@@ -195,9 +207,11 @@ def cards():
             )
             connection.commit()
             level = 1
+            cursor.close()
             return render_template("login.html")
         if request.form["button"] == "Lake":
             prevButton = "Lake"
+            cursor.close()
             return render_template(
                 "cards.html",
                 name="https://w0.peakpx.com/wallpaper/751/975/HD-wallpaper-hogwarts-castle-castle-hogwarts.jpg",
@@ -205,6 +219,7 @@ def cards():
             )
         if request.form["button"] == "Castle":
             prevButton = "Castle"
+            cursor.close()
             return render_template(
                 "cards.html",
                 name="https://w0.peakpx.com/wallpaper/290/679/HD-wallpaper-harry-potter-harry-potter-and-the-chamber-of-secrets-hogwarts-castle.jpg",
@@ -212,6 +227,7 @@ def cards():
             )
         if request.form["button"] == "Hagrids Hut":
             prevButton = "Hagrids Hut"
+            cursor.close()
             return render_template(
                 "cards.html",
                 name="https://images.ctfassets.net/usf1vwtuqyxm/1ERSda92XiUgGWICymMgc6/5f3dff987a43cf997de4b85867bd662f/HagridsHut_WB_F3_BuckbeaksExecutionAtHagridsHut_Illust_100615_Land.jpg?w=914&q=70&fm=webp",
@@ -219,6 +235,7 @@ def cards():
             )
         if request.form["button"] == "Hogsmeade Village":
             prevButton = "Hogsmeade Village"
+            cursor.close()
             return render_template(
                 "cards.html",
                 name="https://static1.srcdn.com/wordpress/wp-content/uploads/2017/04/Harry-Potter-Hogsmeade-at-Christmastime-with-Snow-in-the-air-and-pedestrians.jpg?q=50&fit=crop&w=1500&dpr=1.5",
@@ -226,6 +243,7 @@ def cards():
             )
         if request.form["button"] == "Quidditch":
             prevButton = "Quidditch"
+            cursor.close()
             return render_template(
                 "cards.html",
                 name="https://i.ytimg.com/vi/uhnvXT9mmyU/maxresdefault.jpg",
@@ -238,6 +256,7 @@ def cards():
             # print("Inside RR")
             if "Alohomora" in record:
                 # print("present")
+                cursor.close()
                 return render_template(
                     "cards.html",
                     name="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2022/12/hogwarts-legacy-room-of-requirement-1.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5",
@@ -245,6 +264,7 @@ def cards():
                 )
             else:
                 # print("not present")
+                cursor.close()
                 return render_template(
                     "cards.html",
                     name="https://www.pcinvasion.com/wp-content/uploads/2023/02/How-to-make-the-Room-of-Requirement-Bigger-Hogwarts-Legacy-Guide-featured-image.jpg",
@@ -256,7 +276,9 @@ def cards():
             if level == 9:
                 # cursor.execute("SELECT time FROM user WHERE userid=%s", (playerid,))
                 # time = cursor.fetchone()
+                cursor.close()
                 return render_template("endpage.html")
+            cursor.close()
             return render_template(
                 "cards.html",
                 name="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/61c67649-6df5-4fd9-8082-6e4021e6dca5/d2qaz3r-44068af1-e256-4f10-8066-64b36b6abe3e.jpg/v1/fill/w_900,h_600,q_75,strp/the_dragon_fight_by_kaelngu_d2qaz3r-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjAwIiwicGF0aCI6IlwvZlwvNjFjNjc2NDktNmRmNS00ZmQ5LTgwODItNmU0MDIxZTZkY2E1XC9kMnFhejNyLTQ0MDY4YWYxLWUyNTYtNGYxMC04MDY2LTY0YjM2YjZhYmUzZS5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ZgEftWIZeYZZOoX8bx5Qu3_wuy6dahj0WCv701GcSPE",
@@ -265,6 +287,7 @@ def cards():
         # if request.form["button-quit"] == "quit":
         #     return render_template("startpage.html")
         if request.form["button"] == "back-button":
+            cursor.close()
             return render_template("game.html", clue=clue, level=level)
 
         answer = request.form.get("answer")
@@ -287,6 +310,7 @@ def cards():
             cursor.execute("SELECT * FROM quesdb WHERE level=%s", ((level),))
             record = cursor.fetchone()
             clue = record[1]
+            cursor.close()
             return render_template(
                 "game.html", alert_message=alert_message, clue=clue, level=level
             )
@@ -301,10 +325,12 @@ def cards():
             cursor.execute("SELECT * FROM deadend1 WHERE level=%s", ((1),))
             record = cursor.fetchone()
             clue = record[1]
+            cursor.close()
             return render_template(
                 "game.html", alert_message=alert_message, clue=clue, level=level
             )
         alert_message = "Wrong Answer!"
+        cursor.close()
         return render_template(
             "game.html", alert_message=alert_message, clue=clue, level=level
         )
@@ -314,6 +340,7 @@ def cards():
 
 @app.route("/save_timer", methods=["POST"])
 def save_timer():
+    cursor = connection.cursor()
     timer_value = request.form.get("timerValue")
     # print(timer_value)
     # Store the timer value in the database
@@ -322,6 +349,7 @@ def save_timer():
         (timer_value, playerid),
     )
     connection.commit()
+    cursor.close()
     return jsonify({"status": "success"})
 
 
