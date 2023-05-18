@@ -1,0 +1,14 @@
+To complete the treasure hunt, choose the correct place to visit and answer the question correctly. Answering the question correctly but at the wrong place would lead to a dead end. There are multiple dead ends in the game.
+
+Correct Answer:
+
+	Place			Answer
+1.	Lake			282001
+2.	Castle			Dumbledore
+3.	Quidditch		I show not your face but your hearts desire
+4.	Room of Requirement	Alohomora
+5.	Dragon Challenge	12042023
+6.	Hagrids Hut		Griphook
+7.	Hogsmeade Village	Lockhart
+8.	Room of Requirement	394
+9.	Dragon Challenge	Hungarian Horntail (This question will only pop up 				if you choose the wrong place for the final answer 				to lead you towards a dead-end)
