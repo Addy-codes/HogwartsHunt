@@ -1,5 +1,4 @@
-
-.container{
+.container {
     color: black;
     position: relative;
     border-color: black;
@@ -7,24 +6,10 @@
 
 }
 
-
-.button-prev{
-    top: 90%;
+.button-reset {
+    top: 160px;
     position: fixed;
-    left: 3%;
-    z-index: 9999;
-    font-size: 20px;
-    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
-
-    background-color: brown;
-    color: white;
-
-}
-
-.button-quit{
-    top: px;
-    position: fixed;
-    left: 88%;
+    left: 92%;
     z-index: 9999;
     font-size: 24px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
@@ -34,9 +19,38 @@
 
 }
 
-.container img{
+.button-prev {
+    top: 90%;
+    position: fixed;
+    left: 3%;
+    z-index: 9999;
+    font-size: 20px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    margin: 0;
+    padding: 0;
+    background-color: brown;
+    color: white;
+
+}
+
+.button-quit {
+    top: 160px;
+    position: fixed;
+    margin: 0;
+    padding: 0;
+    z-index: 9999;
+    font-size: 24px;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(2px);
+    background-color: brown;
+    color: white;
+
+}
+
+.container img {
     width: 100%;
 }
+
 /* .level{
     top: 75px;
     right: 800px;
@@ -63,7 +77,8 @@
     font-size: 24px;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(2px);
-  }
+}
+
 .score-box {
     position: fixed;
     top: 75px;
@@ -76,7 +91,7 @@
     align-items: center;
     padding: 0 30px;
 
-  }
+}
 
 #timer {
     position: fixed;
@@ -92,18 +107,19 @@
     left: 0;
     backdrop-filter: blur(2px);
     max-width: 80px;
-  }
-  
-  #timer .minutes {
+}
+
+#timer .minutes {
     padding-right: 5px;
-  }
-  
-  #timer .seconds {
+}
+
+#timer .seconds {
     padding-left: 5px;
-  }
+}
 
 input[type=submit] {
-    max-width: 15em;  height: 2em;
+    max-width: 15em;
+    height: 2em;
     background-color: transparent;
     font-size: 30px;
     border-style: none;
@@ -111,7 +127,8 @@ input[type=submit] {
     text-shadow: 5px 4px 5px black;
 
 }
-.clue-box{
+
+.clue-box {
     position: absolute;
     justify-content: center;
     border-style: double;
@@ -122,49 +139,56 @@ input[type=submit] {
 
 }
 
-input[type=submit]:hover{
+input[type=submit]:hover {
     color: black;
     text-shadow: 5px 4px 5px white;
 }
 
-.button-lake{
+.button-lake {
     z-index: 1;
     position: absolute;
     left: 28%;
     top: 36%;
 }
-.button-castle{
+
+.button-castle {
     left: 73%;
     top: 25%;
     position: absolute;
     z-index: 2;
 }
-.button-hut{
+
+.button-hut {
     left: 82%;
     top: 55%;
 
     position: absolute;
 }
-.button-hogsmeade{
+
+.button-hogsmeade {
     top: 70%;
     left: 40%;
     position: absolute;
 }
-.button-room{
+
+.button-room {
     left: 70%;
     top: 15%;
     position: absolute;
 }
-.button-quidditch{
+
+.button-quidditch {
     left: 80%;
     top: 83%;
     position: absolute;
 }
-.button-room{
-    
+
+.button-room {
+
     position: absolute;
 }
-.button-dragon{
+
+.button-dragon {
     font-size: 18px;
     left: 70%;
     top: 67%;
