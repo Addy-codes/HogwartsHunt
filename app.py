@@ -16,11 +16,11 @@ import datetime
 # Jawsdb connection
 
 connection = mysql.connector.connect(
-    host="rwo5jst0d7dgy0ri.cbetxkdyhwsb.us-east-1.rds.amazonaws.com	",
+    host="rwo5jst0d7dgy0ri.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     port="3306",
     database="gxodx3vdh8i0wk8a",
     user="bgcejd051uyjgftq",
-    password="z0eq42do20xanycs",
+    password="neyty726s0efn8o3",
 )
 
 app = Flask(__name__)
