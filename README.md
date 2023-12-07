@@ -6,7 +6,7 @@ Welcome to **Hogwarts Hunt Quest**, an enchanting web application designed to ta
 
 Watch a short gameplay video of Hogwarts Hunt Quest below to get a glimpse of the magic and adventure that awaits:
 
-![Gameplay](https://github.com/Addy-codes/HogwartsHunt/blob/main/assets/Gameplay.mp4?raw=true)
+![video](https://github.com/Addy-codes/HogwartsHunt/blob/main/assets/Gameplay.mp4?raw=true)
 
 
 ## Technologies Used 🛠️
