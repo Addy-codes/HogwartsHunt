@@ -2,6 +2,13 @@
 
 Welcome to **Hogwarts Hunt Quest**, an enchanting web application designed to take you on an interactive treasure hunt journey like no other. Built with a magical blend of technologies and a dash of wizardry, this game is sure to challenge your skills and provide a thrilling adventure.
 
+## Gameplay Video 🎥
+
+Watch a short gameplay video of Hogwarts Hunt Quest below to get a glimpse of the magic and adventure that awaits:
+
+![Gameplay](https://github.com/Addy-codes/HogwartsHunt/blob/main/assets/Hogwarts Hunt Gameplay.mp4?raw=true)
+
+
 ## Technologies Used 🛠️
 
 - **Python**: Our primary potion for backend logic, spiced up with the powerful Flask Framework.
